@@ -24,4 +24,5 @@ $$
 ### Hypothesis in Statistical Notation
 
 $$H_0: \beta_1 = 0 \\
+
   H_A: \beta_1 \neq 0$$
