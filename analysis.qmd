@@ -1,0 +1,95 @@
+---
+title: "Final Project"
+author: "Jaslyn Miura"
+format: html
+---
+
+### Question and data
+The blog post provides context and background for the question
+The data are explained using text and figures
+The relationships and causal relationships are described with a DAG
+
+### Statistical model
+The statistical model is explained conceptually and using formal statistical notation
+The blog post demonstrates how to simulate data according to model assumptions
+The blog post demonstrates that a model fit to the simulated data recovers the parameters
+
+###Inference
+Hypotheses are stated in plain language and with visualizations
+Model estimates are presented with appropriate uncertainty (e.g., confidence intervals)
+A hypothesis is tested and the evidence is interpreted
+
+###Professionalism
+The overall appearance of the blog post (e.g., figures, code outputs) is portfolio-quality
+The writing is comprehensible to a technical audience
+The code is well-organized and appropriately documented
+
+
+```{r}
+library(tidyverse)
+library(janitor)
+```
+
+# Import Data and Cleaning
+```{r}
+data1 <- read_csv(here::here("data", "MCR_LTER_HerbBite_Focal_Herb_Bite_Rates_2010_20120521.csv")) %>% 
+  clean_names() %>% 
+  select(-c("time_period", "depth_cat"))
+
+data2 <- read_csv(here::here("data", 
+                             "MCR_LTER_HerbBite_Addit_Bite_Rate_Data_2010_20120521.csv")) %>% 
+  clean_names()
+
+# cleaning the bite_data
+bite_data <- rbind(data1, data2) %>% 
+  select(-c("observer", "time_beg", "time_end", "stage", "notes")) %>% 
+  drop_na()
+
+bite_data$mean_depth <- (bite_data$depth_beg + bite_data$dept_end) / 2
+
+bite_data <- bite_data %>% 
+  select(-c("depth_beg", "dept_end"))
+
+bite_data$dominant_substrate <- apply(
+  bite_data[, c("bare", "rubble", "cca", "sand", "other")],
+  1,
+  function(x) names(x)[which.max(x)]
+)
+
+bite_data_clean <- bite_data %>% 
+  select(-c("bare", "rubble", "cca", "sand", "other"))
+
+```
+
+# Data Exploration
+```{r}
+
+ggplot(data = bite_data, aes(x=dept_end, y = size_cm, color = species)) +
+  geom_jitter()
+
+```
+
+# Hypothesis
+
+How is the herbivore grazing bite counts related to fish size, species, depth, and substrate?
+
+Null Hypothesis: Either size, species, depth, or substrate have no effect on bite count.
+Alternative Hypothesis: A predictor/predictors have an effect on bite count.
+
+## Poisson model notation:
+
+$$
+\begin{align}
+\text{BiteCount} &\sim Poisson(\lambda) \\
+log(\lambda) &= \beta_0 + \beta_1 \text{Size} + \beta_2 \text{Species} + \beta_3\text{Size}(Species)  + \beta_4 \text{Depth} + \beta_5 \text{Substrate}
+\end{align}
+$$
+# Hypothesis in Statistical Notation
+$$H_0: \beta_1 = 0 \\
+  H_A: \beta_1 \neq 0$$
+
+
+```{r}
+
+```
+
