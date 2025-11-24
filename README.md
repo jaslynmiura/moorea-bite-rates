@@ -7,6 +7,7 @@ To understand the interaction between herbivorous fish species and coral reefs i
 How is the herbivore grazing bite counts related to fish size, species, depth, and substrate?
 
 **Null Hypothesis:** Either size, species, depth, or substrate have no effect on bite count.
+
 **Alternative Hypothesis:** A predictor/predictors have an effect on bite count.
 
 Since our response variable, Total Bites, is discrete count data, we will use a **Negative Binomial** statistical model.
