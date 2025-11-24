@@ -90,6 +90,11 @@ $$H_0: \beta_1 = 0 \\
 
 
 ```{r}
+library(MASS)
+
+bite_model <- glm.nb(total_bites ~ size_cm*species + size_cm + mean_depth + dominant_substrate, data = bite_data_clean)
+
+summary(bite_model)
 
 ```
 
