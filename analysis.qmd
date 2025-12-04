@@ -1,10 +1,11 @@
 ---
 title: "Final Project"
 author: "Jaslyn Miura"
+date: December 4, 2025
 format: html
 ---
 
-# Research Question/Background
+# Background
 
 Due to changing climate conditions, macroalgae coverage can impact the transitional phases in coral colonization. Since coral reefs play such an important role in ecosystem services understanding coral reef dynamics is important. An aspect of this is understanding how macroalgae within the systems are being controlled. The herbivorous fishes Chlorurus sordidus, commonly known as parrot fish, and Ctenochaetus striatus, commonly known as striated surgeonfish are reef fish that feed on the algae directly impacting coral reefs.
 
@@ -59,7 +60,7 @@ bite_data_clean <- bite_data %>%
 ## Data Exploration
 
 ```{r}
-#| fig-cap: "Figure 1: Total number of bites as a result of Fish Length (cm), by species, across 164 observed fish"
+#| fig-cap: "Figure 1: Total number of bites as a result of Fish Length (cm), by species, across 164 observed fish."
 
 # Plot of size vs. total bites, by species.
 ggplot(data = bite_data_clean, aes(x = size_cm, y = total_bites, color = species)) +
@@ -72,7 +73,7 @@ ggplot(data = bite_data_clean, aes(x = size_cm, y = total_bites, color = species
 ```
 
 ```{r}
-#| fig-cap: "Figure 2: Total number of bites as a result of Mean Depth (ft), by species, across 164 observed fish"
+#| fig-cap: "Figure 2: Total number of bites as a result of Mean Depth (ft), by species, across 164 observed fish."
 
 # Plot of mean depth vs. total bites, by species
 ggplot(data = bite_data_clean, aes(x = mean_depth, y = total_bites, color = species)) +
@@ -85,7 +86,7 @@ ggplot(data = bite_data_clean, aes(x = mean_depth, y = total_bites, color = spec
 ```
 
 ```{r}
-#| fig-cap: "Figure 3: Distribution of the Total number of bites"
+#| fig-cap: "Figure 3: Distribution of the Total number of bites."
 
 # Total bite count distribution
 ggplot(data = bite_data_clean, aes(x = total_bites)) +
@@ -104,17 +105,16 @@ The data is not normally distributed. The total number of bites is right skewed.
 
 ### Create a DAG
 
-![](images/moorea_DAG.png)
+![Directed Acyclic Graph, representing potential relationships and causal relationships between variables](images/moorea_DAG.png)
 
 **Null Hypothesis:** Either size, species, depth, or substrate have no effect on bite count.
 
 **Alternative Hypothesis:** A predictor/predictors have an effect on bite count.
 
-# Hypothesis in Statistical Notation
+**Hypothesis in Statistical Notation:**
 
 $$H_0: \beta_1 = 0 \\
   H_A: \beta_1 \neq 0$$
-
 
 ```{r}
 # Find the mean and variance.
@@ -122,7 +122,11 @@ var_total_bites <- var(bite_data_clean$total_bites)
 mean_total_bites <- mean(bite_data_clean$total_bites)
 
 # Check that variance is greater than the mean.
-var_total_bites > mean_total_bites
+if (var_total_bites > mean_total_bites) {
+  print("After testing, the variance of the `total_bites` is greater than the mean of `total_bites`.")
+  print(paste("Variance:", var_total_bites))
+  print(paste("Mean:", mean_total_bites))
+}
 ```
 
 **What model?**: Since we are dealing with count data, `total_bites`, our model options are Poisson Regression or Negative Binomial Regression. Since the Poisson distribution assumes that the mean and variance are equal, which is an assumption that our data does not meet. The mean of `total_bites` is `r var_total_bites` and the variance of `total_bites` is `r var_total_bites` . Since the variance is greater than the mean, the distribution of our count data, `total_bites` exhibits overdispersion; which is a factor that the Negative Binomial Regression model accounts for.
@@ -130,16 +134,13 @@ var_total_bites > mean_total_bites
 ## Negative Binomial Regression model notation:
 
 $$
-\begin{align}
+\begin{aligned}
 \text{BiteCount} &\sim Negative Binomial(\mu, \theta) \\
-log(\mu) &= \beta_0 + \beta_1 \text{Size} + \beta_2 \text{Species} + \beta_3\text{Size}(Species) + \beta_4 \text{Depth} + \beta_5 \text{Substrate} + \beta_6{Depth}(Substrate) \\
-\mu = r(1-p)/p
-\end{align}
+log(\mu) &= \beta_0 + \beta_1 \text{Size} + \beta_2 \text{Species} + \beta_3 \text{Depth} + \beta_4 \text{Substrate} \\
+\end{aligned}
 $$
 
 # Fit model to simulated data
-
-First we'll simulate data to ...
 
 ```{r}
 # Set seed for reproducibility purposes.
@@ -176,7 +177,7 @@ summary(negbi)
 
 We'll use and additive Negative Binomial Regression model. Our predictor variables are `size_cm`, `species`, `mean_depth`, `dominant_substrate`, and an offset of `seconds_observed`.
 
-We want to use an offset since larger or smaller data could be collected based on the time spent measuring total bite counts.
+Since the time observed varied between 5 minutes, we want to use an offset within our model since larger or smaller data could be collected based on the time spent measuring total bite counts.
 
 ```{r}
 full_model <- glm.nb(total_bites ~ size_cm + species + mean_depth + dominant_substrate + offset(log(seconds_observed)), data = bite_data_clean)
@@ -252,9 +253,10 @@ ggplot(bite_pred_grid, aes(size_cm, predicted_bites, color = species)) +
   facet_wrap(~species, scales = "free_x") +
   labs(x = "Length of Fish (cm)",
        y = "Total bite counts",
-       color = "Species") + ## Would this be the number of bites or the predicted number of bites
+       color = "Species") + 
   theme_minimal()
 ```
+
 
 ## Making Predictions, with interactions and varying mean depth.
 
@@ -264,7 +266,7 @@ final_model <- glm.nb(total_bites ~ size_cm + species*mean_depth + dominant_subs
 summary(final_model)
 ```
 
-Coefficient Interpretations:
+#### Coefficient Interpretations:
 
 $\beta_1$ representing the size effect is again significant, where for every centimeter increase in fish length, the expected bite count decreases by 0.0648. $\beta_2$ representing the species effect. This coefficient specifically is the difference in expected bite counts between the species, when the depth is 0. Therefore, when depth is 0, we'd expect the bite count for parrot fish to be about 0.687 counts lower than striated surgeonfish. $\beta_3$ representing the depth effect on striated surgeonfish, is not significant. Meaning that depth does not affect the expected bite count of striated surgeonfish. $\beta_4$ representing the dominant substrate effect is again not significant. Therefore, when holding all other variables constant, substrate does not affect the expected bite count. $\beta_5$ representing the interaction between species and depth effect, is also the indicator of depth effect on parrot fish in relation to striated surgeonfish. Using the sum of estimate of $\beta_3$ and $\beta_5$ we can calculate the slope of depth's effect on parrot fish expected bite counts. This means that for every meter increase in depth, expected bite counts for the parrot fish will increase by 0.02445.
 
@@ -338,6 +340,10 @@ ggplot(bite_pred_grid2, aes(mean_depth, predicted_bites, color = species)) +
        color = "Species") + ## Would this be the number of bites or the predicted number of bites
   theme_minimal()
 ```
+
+### Conclusions:
+
+From this analysis we found that size has a significant effect on total bite counts, where larger fish take less bites. Another significant finding was that there was a significant effect of the interaction of species and depth. Which indicated that the there are different feeding behaviors of the species at different depths. After collecting these results further research can be done to understand the behaviors of the species at different depths, which would include collecting other variables that could have an effect on bite counts. Such as different environmental factors such as temperature, pH levels, presence of other species, etc. This analysis could provide a baseline for stakeholders when it comes to conservation decision making. For example, by using this analysis and with further research size limits can be created or updated to protect the size range of species that feed the most on the coral reefs.
 
 #### References:
 
