@@ -216,7 +216,7 @@ bite_pred_grid$predicted_bites <- predict(full_model,
 # Generate a standard error for predictions.
 bite_pred_se <- predict(object = full_model,
                         newdata = bite_pred_grid,
-                        type = "link", # stay in link space!
+                        type = "link", 
                         se.fit = TRUE)
 
 # Go from link space to response space
@@ -304,7 +304,7 @@ bite_pred_grid2$predicted_bites <- predict(final_model,
 # Generate a standard error for predictions.
 bite_pred_se2 <- predict(object = final_model,
                         newdata = bite_pred_grid2,
-                        type = "link", # stay in link space!
+                        type = "link", 
                         se.fit = TRUE)
 
 # Go from link space to response space
@@ -337,7 +337,7 @@ ggplot(bite_pred_grid2, aes(mean_depth, predicted_bites, color = species)) +
   facet_wrap(~species, scales = "free_x") +
   labs(x = "Depth (m)",
        y = "Total bite counts",
-       color = "Species") + ## Would this be the number of bites or the predicted number of bites
+       color = "Species") + 
   theme_minimal()
 ```
 
