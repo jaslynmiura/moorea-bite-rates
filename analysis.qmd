@@ -4,97 +4,343 @@ author: "Jaslyn Miura"
 format: html
 ---
 
-### Question and data
-The blog post provides context and background for the question
-The data are explained using text and figures
-The relationships and causal relationships are described with a DAG
+# Research Question/Background
 
-### Statistical model
-The statistical model is explained conceptually and using formal statistical notation
-The blog post demonstrates how to simulate data according to model assumptions
-The blog post demonstrates that a model fit to the simulated data recovers the parameters
+Due to changing climate conditions, macroalgae coverage can impact the transitional phases in coral colonization. Since coral reefs play such an important role in ecosystem services understanding coral reef dynamics is important. An aspect of this is understanding how macroalgae within the systems are being controlled. The herbivorous fishes Chlorurus sordidus, commonly known as parrot fish, and Ctenochaetus striatus, commonly known as striated surgeonfish are reef fish that feed on the algae directly impacting coral reefs.
 
-###Inference
-Hypotheses are stated in plain language and with visualizations
-Model estimates are presented with appropriate uncertainty (e.g., confidence intervals)
-A hypothesis is tested and the evidence is interpreted
+This observation data in was collected from the coral reefs of Moʻorea, French Polynesia at research stations LTER 1 and Resilience 2. Focal fish species were identified by a SCUBA diver, an estimated fish length (cm), the depth at the start and end of the observation period, substrate types, and the number of bites taken within 5 minutes was recorded. The data was collected several days in July and August of 2010 between the times of 10:00 and 16:00, an identified period of time which corresponds to peak feeding rates for may herbivorous fishes (Adam, 2019).
 
-###Professionalism
-The overall appearance of the blog post (e.g., figures, code outputs) is portfolio-quality
-The writing is comprehensible to a technical audience
-The code is well-organized and appropriately documented
+Using this data we want to understand, how herbivore grazing bite counts are influenced by fish size, species, depth, and substrate.
 
+## Data Collection and Cleaning
 
-```{r}
+```{r, message=FALSE}
 library(tidyverse)
+library(dplyr)
 library(janitor)
+library(MASS)
 ```
 
-# Import Data and Cleaning
-```{r}
+```{r, output=FALSE, message=FALSE}
+# Load in the data.
 data1 <- read_csv(here::here("data", "MCR_LTER_HerbBite_Focal_Herb_Bite_Rates_2010_20120521.csv")) %>% 
-  clean_names() %>% 
-  select(-c("time_period", "depth_cat"))
+  clean_names() %>%
+  dplyr::select(-c(time_period, depth_cat))
 
 data2 <- read_csv(here::here("data", 
                              "MCR_LTER_HerbBite_Addit_Bite_Rate_Data_2010_20120521.csv")) %>% 
   clean_names()
 
-# cleaning the bite_data
+# Stacking the datasets and dropping unnecessary columns.
 bite_data <- rbind(data1, data2) %>% 
-  select(-c("observer", "time_beg", "time_end", "stage", "notes")) %>% 
+  dplyr::select(-c("observer", "time_beg", "time_end", "stage", "notes")) %>% 
   drop_na()
 
+# Creating a mean_depth column.
 bite_data$mean_depth <- (bite_data$depth_beg + bite_data$dept_end) / 2
 
+# Dropping the depth range columns.
 bite_data <- bite_data %>% 
-  select(-c("depth_beg", "dept_end"))
+  dplyr::select(-c("depth_beg", "dept_end"))
 
+# Of the substrate type create a column of the dominant substrate.
 bite_data$dominant_substrate <- apply(
   bite_data[, c("bare", "rubble", "cca", "sand", "other")],
   1,
-  function(x) names(x)[which.max(x)]
-)
+  function(x) names(x)[which.max(x)])
 
+# Drop individual substrate columns make species and substrates factors.
 bite_data_clean <- bite_data %>% 
-  select(-c("bare", "rubble", "cca", "sand", "other"))
-
+  dplyr::select(-c("bare", "rubble", "cca", "sand", "other")) %>% 
+  mutate(species = factor(species),
+         dominant_substrate = factor(dominant_substrate))
 ```
 
-# Data Exploration
+## Data Exploration
+
 ```{r}
+#| fig-cap: "Figure 1: Total number of bites as a result of Fish Length (cm), by species, across 164 observed fish"
 
-ggplot(data = bite_data, aes(x=dept_end, y = size_cm, color = species)) +
-  geom_jitter()
-
+# Plot of size vs. total bites, by species.
+ggplot(data = bite_data_clean, aes(x = size_cm, y = total_bites, color = species)) +
+  geom_jitter() +
+  labs(x = "Fish Length (cm)",
+       y = "Total number of bites",
+       color = "Species") +
+  scale_color_manual(values = c("dodgerblue", "violet")) +
+  theme_minimal()
 ```
 
-# Hypothesis
+```{r}
+#| fig-cap: "Figure 2: Total number of bites as a result of Mean Depth (ft), by species, across 164 observed fish"
 
-How is the herbivore grazing bite counts related to fish size, species, depth, and substrate?
+# Plot of mean depth vs. total bites, by species
+ggplot(data = bite_data_clean, aes(x = mean_depth, y = total_bites, color = species)) +
+  geom_jitter() +
+  labs(x = "Mean depth (ft)",
+       y = "Total number of bites",
+       color = "Species") +
+  scale_color_manual(values = c("dodgerblue", "violet")) +
+  theme_minimal()
+```
 
-Null Hypothesis: Either size, species, depth, or substrate have no effect on bite count.
-Alternative Hypothesis: A predictor/predictors have an effect on bite count.
+```{r}
+#| fig-cap: "Figure 3: Distribution of the Total number of bites"
 
-## Poisson model notation:
+# Total bite count distribution
+ggplot(data = bite_data_clean, aes(x = total_bites)) +
+  geom_histogram(binwidth = 10,
+                 fill = "black") +
+  labs(x = "Total number of bites",
+       y = "Count") +
+  theme_minimal()
+```
 
-$$
-\begin{align}
-\text{BiteCount} &\sim Poisson(\lambda) \\
-log(\lambda) &= \beta_0 + \beta_1 \text{Size} + \beta_2 \text{Species} + \beta_3\text{Size}(Species)  + \beta_4 \text{Depth} + \beta_5 \text{Substrate}
-\end{align}
-$$
+The data is not normally distributed. The total number of bites is right skewed.
+
+# Question
+
+**Research Question:** How is the herbivore grazing bite counts related to fish size, species, depth, and substrate?
+
+### Create a DAG
+
+![](images/moorea_DAG.png)
+
+**Null Hypothesis:** Either size, species, depth, or substrate have no effect on bite count.
+
+**Alternative Hypothesis:** A predictor/predictors have an effect on bite count.
+
 # Hypothesis in Statistical Notation
+
 $$H_0: \beta_1 = 0 \\
   H_A: \beta_1 \neq 0$$
 
 
 ```{r}
-library(MASS)
+# Find the mean and variance.
+var_total_bites <- var(bite_data_clean$total_bites)
+mean_total_bites <- mean(bite_data_clean$total_bites)
 
-bite_model <- glm.nb(total_bites ~ size_cm*species + size_cm + mean_depth + dominant_substrate, data = bite_data_clean)
+# Check that variance is greater than the mean.
+var_total_bites > mean_total_bites
+```
 
-summary(bite_model)
+**What model?**: Since we are dealing with count data, `total_bites`, our model options are Poisson Regression or Negative Binomial Regression. Since the Poisson distribution assumes that the mean and variance are equal, which is an assumption that our data does not meet. The mean of `total_bites` is `r var_total_bites` and the variance of `total_bites` is `r var_total_bites` . Since the variance is greater than the mean, the distribution of our count data, `total_bites` exhibits overdispersion; which is a factor that the Negative Binomial Regression model accounts for.
+
+## Negative Binomial Regression model notation:
+
+$$
+\begin{align}
+\text{BiteCount} &\sim Negative Binomial(\mu, \theta) \\
+log(\mu) &= \beta_0 + \beta_1 \text{Size} + \beta_2 \text{Species} + \beta_3\text{Size}(Species) + \beta_4 \text{Depth} + \beta_5 \text{Substrate} + \beta_6{Depth}(Substrate) \\
+\mu = r(1-p)/p
+\end{align}
+$$
+
+# Fit model to simulated data
+
+First we'll simulate data to ...
+
+```{r}
+# Set seed for reproducibility purposes.
+set.seed(123)
+
+# Select coefficient values.
+beta0 <- 1
+beta1 <- -0.3
+theta <- 1.5
+
+# Generate random x values.
+x1 <- rnorm(10000, mean = 0, sd = 2)
+
+# Find mu in link space.
+log_mu <- beta0 + beta1 * x1
+
+# Transform the log_mu to response space.
+mu <- exp(log_mu)
+
+# Generate random y values.
+y <- rnbinom(n = 10000, size = theta, mu = mu)
+
+# Create a tibble of x1 and y.
+sim_data <- tibble(x1, y)
+
+# Fite a negative binomial model to the simulated data.
+negbi <- glm.nb(y ~ x1, data = sim_data)
+
+# Get the summary statistics of the negative binomial model.
+summary(negbi)
+```
+
+# Fit model to real data
+
+We'll use and additive Negative Binomial Regression model. Our predictor variables are `size_cm`, `species`, `mean_depth`, `dominant_substrate`, and an offset of `seconds_observed`.
+
+We want to use an offset since larger or smaller data could be collected based on the time spent measuring total bite counts.
+
+```{r}
+full_model <- glm.nb(total_bites ~ size_cm + species + mean_depth + dominant_substrate + offset(log(seconds_observed)), data = bite_data_clean)
+
+summary(full_model)
+```
+
+#### Coefficient Interpretations:
+
+$\beta_1$ representing the size effect is a significant as for every centimeter increase in fish length, the expected bite count decreases by about 0.05199, when holding other predictor variables constant. $\beta_2$ representing the species effect, with parrot fish being our reference level, is not significant. Which indicates that the expected bite count between the two species are statistically the same, when holding other predictor variables constant. $\beta_3$ representing depth effect is very significant predictor as our p-value is extremely low, meaning that the probability of the observed results occurring by random change is 0.058%. Therefore, for every meter increase in depth, expected bite count increases by about 0.015208. $\beta_4$ representing the substrate effect, with bare being the reference level, is not significant. This means that substrate does not statistically influence expected bite counts.
+
+In summary, bite count decreases when fish length increases, suggesting that larger fish take fewer bites, which can be explained by the idea of larger fish taking less bites, due to taking bigger bites. Bite counts also significantly increase as depth increases. This can indicate more food availability at different depth levels.
+
+# Generating Predictions
+
+Next I'll generate expected bite count predictions. The predictions will be generated varying the fish lengths (cm), `size_cm`, and holding all other variables constant.
+
+The expected bite count predictions were generated in response space, while the confidence interval for the expected bite count predictions were generated in link space.
+
+```{r}
+# Create grid for generated predictions.
+bite_pred_grid <- expand_grid(
+  size_cm = seq(12, 25, by = 0.5),
+  mean_depth = mean(bite_data_clean$mean_depth),
+  species = levels(bite_data_clean$species),
+  seconds_observed = mean(bite_data_clean$seconds_observed)) %>%
+  mutate(
+    species = factor(species, levels = levels(bite_data_clean$species)),
+    dominant_substrate = factor("bare", levels = levels(bite_data_clean$dominant_substrate)))
+
+# Generate predictions.
+bite_pred_grid$predicted_bites <- predict(full_model,
+                                          newdata = bite_pred_grid,
+                                          type = "response")
+
+# Generate a standard error for predictions.
+bite_pred_se <- predict(object = full_model,
+                        newdata = bite_pred_grid,
+                        type = "link", # stay in link space!
+                        se.fit = TRUE)
+
+# Go from link space to response space
+linkinv <- family(full_model)$linkinv
+bite_pred_grid <- bite_pred_grid %>% 
+  mutate(
+    
+    # get log(mu)
+    log_mu = bite_pred_se$fit,
+    
+    # 95% CI in link space
+    log_mu_se = bite_pred_se$se.fit,
+    log_mu_lwr = qnorm(0.025, mean = log_mu, sd = log_mu_se),
+    log_mu_upr = qnorm(0.975, mean = log_mu, sd = log_mu_se),
+    
+    # undo the link function using linkinv
+    mu = linkinv(log_mu), 
+    mu_lwr = linkinv(log_mu_lwr),
+    mu_upr = linkinv(log_mu_upr)
+  )
 
 ```
 
+We'll then plot the expected bite count predictions along with the observed values to see how well our expected predictions from the model, fit the data.
+
+```{r}
+#| fig-cap: "Figure 4: Observed data fit to the expected bite count predictions."
+# Plot the observed variables and 
+ggplot(bite_pred_grid, aes(size_cm, predicted_bites, color = species)) +
+  geom_ribbon(aes(ymin = mu_lwr, ymax = mu_upr), alpha = 0.2) +
+  geom_line() +
+  geom_jitter(data = bite_data_clean, aes(x= size_cm, y = total_bites)) + 
+  scale_color_manual(values = c("dodgerblue", "violet")) +
+  facet_wrap(~species, scales = "free_x") +
+  labs(x = "Length of Fish (cm)",
+       y = "Total bite counts",
+       color = "Species") + ## Would this be the number of bites or the predicted number of bites
+  theme_minimal()
+```
+
+## Making Predictions, with interactions and varying mean depth.
+
+```{r}
+final_model <- glm.nb(total_bites ~ size_cm + species*mean_depth + dominant_substrate + offset(log(seconds_observed)), data = bite_data_clean)
+
+summary(final_model)
+```
+
+Coefficient Interpretations:
+
+$\beta_1$ representing the size effect is again significant, where for every centimeter increase in fish length, the expected bite count decreases by 0.0648. $\beta_2$ representing the species effect. This coefficient specifically is the difference in expected bite counts between the species, when the depth is 0. Therefore, when depth is 0, we'd expect the bite count for parrot fish to be about 0.687 counts lower than striated surgeonfish. $\beta_3$ representing the depth effect on striated surgeonfish, is not significant. Meaning that depth does not affect the expected bite count of striated surgeonfish. $\beta_4$ representing the dominant substrate effect is again not significant. Therefore, when holding all other variables constant, substrate does not affect the expected bite count. $\beta_5$ representing the interaction between species and depth effect, is also the indicator of depth effect on parrot fish in relation to striated surgeonfish. Using the sum of estimate of $\beta_3$ and $\beta_5$ we can calculate the slope of depth's effect on parrot fish expected bite counts. This means that for every meter increase in depth, expected bite counts for the parrot fish will increase by 0.02445.
+
+In summary, this new additive interaction Negative Binomial Regression model indicates that again larger fish take less bites. Within this new model an important effect is that at deeper depths, the bite counts of parrot fish increase. However, the model does not indicate a similar significant pattern for striated surgeonfish. Therefore, the model reveals different behaviors and patterns within species related to herbivory grazing upon coral reefs.
+
+# Generate Predictions
+
+Finally, we'll generate expected bite count predictions from the new additive interactive Negative Binomial Regression model. The predictions will be generated varying the depth, `mean_depth`, and holding all other variables constant.
+
+The expected bite count predictions will be generated in response space, while the confidence interval for the expected bite count predictions will be generated in link space.
+
+```{r}
+# Find the mean size, by species.
+species_means <- bite_data_clean %>% 
+  group_by(species) %>%
+  summarise(
+    mean_size = mean(size_cm, na.rm = TRUE))
+
+# Create grid for generated predictions.
+bite_pred_grid2 <- expand_grid(
+  mean_depth = seq(25, 61, by = 0.5),
+  species = levels(bite_data_clean$species),
+  seconds_observed = mean(bite_data_clean$seconds_observed)) %>%
+  left_join(species_means, by = "species") %>%
+  mutate(
+    size_cm = mean_size,
+    dominant_substrate = factor("bare", levels = levels(bite_data_clean$dominant_substrate)),
+    species = factor(species, levels = levels(bite_data_clean$species)))
+
+# Generate predictions.
+bite_pred_grid2$predicted_bites <- predict(final_model,
+                                          newdata = bite_pred_grid2,
+                                          type = "response")
+
+# Generate a standard error for predictions.
+bite_pred_se2 <- predict(object = final_model,
+                        newdata = bite_pred_grid2,
+                        type = "link", # stay in link space!
+                        se.fit = TRUE)
+
+# Go from link space to response space
+linkinv <- family(final_model)$linkinv
+bite_pred_grid2 <- bite_pred_grid2 %>% 
+  mutate(
+    # get log(mu)
+    log_mu = bite_pred_se2$fit,
+    # 95% CI in link space
+    log_mu_se = bite_pred_se2$se.fit,
+    
+    log_mu_lwr = qnorm(0.025, mean = log_mu, sd = log_mu_se),
+    log_mu_upr = qnorm(0.975, mean = log_mu, sd = log_mu_se),
+    
+    # undo the link function using linkinv
+    mu = linkinv(log_mu), 
+    mu_lwr = linkinv(log_mu_lwr),
+    mu_upr = linkinv(log_mu_upr)
+  )
+```
+
+```{r}
+#| fig-cap: "Figure 5: Observed data fit to the expected bite count predictions. Predictions generated from varying depth and keeping all other variables constant."
+# Plot the observed variables and 
+ggplot(bite_pred_grid2, aes(mean_depth, predicted_bites, color = species)) +
+  geom_ribbon(aes(ymin = mu_lwr, ymax = mu_upr), alpha = 0.2) +
+  geom_line() +
+  geom_jitter(data = bite_data_clean, aes(x= mean_depth, y = total_bites)) + 
+  scale_color_manual(values = c("dodgerblue", "violet")) +
+  facet_wrap(~species, scales = "free_x") +
+  labs(x = "Depth (m)",
+       y = "Total bite counts",
+       color = "Species") + ## Would this be the number of bites or the predicted number of bites
+  theme_minimal()
+```
+
+#### References:
+
+Holbrook, S., Schmitt, R., Adam, T. et al. Coral Reef Resilience, Tipping Points and the Strength of Herbivory. Sci Rep 6, 35817 (2016). https://doi.org/10.1038/srep35817
+
+Moorea Coral Reef LTER and T. Adam. 2019. MCR LTER: Coral Reef Resilience: Herbivore Bite Rates on the North Shore Forereef July-August 2010 ver 2. Environmental Data Initiative. https://doi.org/10.6073/pasta/5a6798c5694d5a58362ab42e584b7b71 (Accessed 2025-12-04).
