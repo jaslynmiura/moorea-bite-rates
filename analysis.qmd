@@ -20,6 +20,8 @@ library(tidyverse)
 library(dplyr)
 library(janitor)
 library(MASS)
+library(knitr)
+library(kableExtra)
 ```
 
 ```{r, output=FALSE, message=FALSE}
@@ -170,7 +172,10 @@ sim_data <- tibble(x1, y)
 negbi <- glm.nb(y ~ x1, data = sim_data)
 
 # Get the summary statistics of the negative binomial model.
-summary(negbi)
+sim_model_table <- broom::tidy(negbi) %>% 
+  kbl(caption = "Coeffieicent Estimates of the Full Additive Model") %>%
+  kable_paper(full_width=TRUE)
+sim_model_table
 ```
 
 # Fit model to real data
@@ -182,7 +187,10 @@ Since the time observed varied between 5 minutes, we want to use an offset withi
 ```{r}
 full_model <- glm.nb(total_bites ~ size_cm + species + mean_depth + dominant_substrate + offset(log(seconds_observed)), data = bite_data_clean)
 
-summary(full_model)
+full_model_table <- broom::tidy(full_model) %>% 
+  kbl(caption = "Coeffieicent Estimates of the Full Additive Model") %>%
+  kable_paper(full_width=TRUE)
+full_model_table
 ```
 
 #### Coefficient Interpretations:
@@ -263,7 +271,10 @@ ggplot(bite_pred_grid, aes(size_cm, predicted_bites, color = species)) +
 ```{r}
 final_model <- glm.nb(total_bites ~ size_cm + species*mean_depth + dominant_substrate + offset(log(seconds_observed)), data = bite_data_clean)
 
-summary(final_model)
+final_model_table <- broom::tidy(final_model) %>% 
+  kbl(caption = "Coeffieicent Estimates of the Full Additive Interactive Model") %>%
+  kable_paper(full_width=TRUE)
+final_model_table
 ```
 
 #### Coefficient Interpretations:
