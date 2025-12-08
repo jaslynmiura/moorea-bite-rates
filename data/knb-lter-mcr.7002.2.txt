@@ -1,0 +1,1399 @@
+
+  
+    
+      uid=MCR,o=lter,dc=ecoinformatics,dc=org
+      all
+    
+    
+      public
+      read
+    
+  
+  
+    
+    knb-lter-mcr.7002
+    doi:10.6073/pasta/5a6798c5694d5a58362ab42e584b7b71
+    RAPID Herbivore Bite Rates
+    MCR LTER: Coral Reef Resilience: Herbivore Bite Rates on the North Shore Forereef July-August 2010
+    
+      Moorea Coral Reef LTER
+      			Marine Science Institute
+			University of California
+			Santa Barbara, CA 93106-6150  USA
+      http://mcr.lternet.edu/
+    
+    
+      Tom Adam
+      Moorea Coral Reef LTER
+      			Marine Science Institute
+			University of California
+			Santa Barbara, CA 93106-6150  USA
+      thomas.adam@lifesci.ucsb.edu
+      http://orcid.org/0000-0001-6146-0260
+      
+    
+    
+      Andrew Brooks
+      Moorea Coral Reef LTER
+      Investigator
+      			Marine Science Institute
+			University of California
+			Santa Barbara, CA 93106-6150  USA
+      805.893.7670
+      AJBrooks@ucsb.edu
+      http://orcid.org/0000-0002-6651-1204
+      
+      Investigator
+    
+    
+      Russell Schmitt
+      Moorea Coral Reef LTER
+      Principle Investigator
+      			Marine Science Institute
+			University of California
+			Santa Barbara, CA 93106-6150  USA
+      805.893.2051
+      schmitt@lifesci.ucsb.edu
+      http://orcid.org/0000-0002-9674-4244
+      
+      Investigator
+    
+    
+      Sally Holbrook
+      Moorea Coral Reef LTER
+      Investigator
+      			Marine Science Institute
+			University of California
+			Santa Barbara, CA 93106-6150  USA
+      805.893.3956
+      holbrook@lifesci.ucsb.edu
+      http://orcid.org/0000-0002-3015-3484
+      
+      Investigator
+    
+    2012-05-21
+    english
+    
+      These data describe bite rates of two abundant species of roving herbivorous fishes found on the forereef, Chlorurus sordidus (Scaridae), and Ctenochaetus striatus (Acanthuridae). During several days in July and August 2010, a SCUBA diver followed individual focal fish for a period of up to 5 minutes and recorded the number of bites taken as well the types of substrates bitten. Upon randomly locating a focal individual, divers estimated the total length of that individual as well as their depth at the initiation (and termination) of the observation. Data are organized in two data tables. The first data table (Focal_Herbivore_Bite_Rates) contains individuals that were observed at two depths (~ 10 m and ~ 17 m) at LTER 1 as part of a balanced sampling design (see Sampling Protocol/Design). The second data table (Additional_Bite_Rate_Data) contains individuals that were observed opportunistically at LTER 1 and Resilience 2. To minimize the effect of time of day on fish behavior, all data were collected between 10:00 and 16:00, a period of time which corresponds with peak feeding rates for many herbivorous fishes.
+       This material is based upon work supported by the U.S. National Science Foundation under
+        Grant No. OCE 16-37396 (and earlier awards) as well as a generous gift from the Gordon and
+        Betty Moore Foundation. Research was completed under permits issued by the French Polynesian
+        Government (Délégation à la Recherche) and the Haut-commissariat de la République en
+        Polynésie Francaise (DTRT) (Protocole d'Accueil 2005-2018). This work represents a
+        contribution of the Moorea Coral Reef (MCR) LTER Site. 
+    
+    
+      MCR
+      LTER
+      Moorea Coral Reef
+      French Polynesia
+      Moorea
+    
+    
+      University of California Santa Barbara
+      California State University Northridge
+      NSF
+      Gordon and Betty Moore Foundation
+      Richard B. Gump South Pacific Research Station
+    
+    
+      Primary Consumers
+      Detritivores
+    
+    
+      fishes
+      trophic dynamics
+      marine
+      species
+      benthic
+      LTER Controlled Vocabulary
+    
+    
+      Fishes
+      Tropical Fishes
+      Coral Reef
+      Detritus feeders
+      Herbivores
+      NBII Biocomplexity Thesaurus
+    
+    
+      Community
+      Trophic Dynamics
+      Marine
+      KNB
+    
+    
+      Populations
+      LTER Core Research Area
+    
+    
+      RAPID
+      MCR Activity
+    
+    
+      Reef Resistance and Resilience
+      Research Theme
+    
+    
+
+      
+  This data package is released under the Creative Commons license
+  Attribution 4.0 International (CC BY 4.0 , see
+  https://creativecommons.org/licenses/by/4.0/).
+  This license states that consumers ("Data Users" herein) may
+  distribute, adapt, reuse, remix, and build upon this work, as long as
+  they give appropriate credit, provide a link to the license, and
+  indicate if changes were made. If redistributed, a Data User may not
+  apply additional restrictions or technological measures that prevent
+  access.
+
+      
+  The Data User has an ethical obligation to cite the data source
+  appropriately in any publication or product that results from its use,
+  and notify the data contact or creator. Communication, collaboration,
+  or co-authorship (as appropriate) with the creators of this data
+  package is encouraged to prevent duplicate research or publication.
+  The Data User is urged to contact the authors of these data if any
+  questions about methodology or results occur. The Data User should
+  realize that these data may be actively used by others for ongoing
+  research and that coordination may be necessary to prevent duplication
+  or inappropriate use. The Data User should realize that
+  misinterpretation may occur if data are used outside of the context of
+  the original study. The Data User should be aware that data are
+  updated periodically and it is the responsibility of the Data User to
+  check for new versions of the data.
+
+      
+  While substantial efforts are made to ensure the accuracy of data and
+  associated documentation, complete accuracy of data sets cannot be
+  guaranteed. This data package (with its components) is made available
+  "as is" and with no warranty of accuracy or fitness for use. The
+  creators of this data package and the repository where these data were
+  obtained shall not be liable for any damages resulting from
+  misinterpretation, use or misuse of the data package or its
+  components.
+
+    
+    
+      
+        MCR LTER site data catalog
+        http://mcr.lternet.edu/data/
+      
+    
+    
+      
+      
+        Moorea, French Polynesia
+        
+          -150.0
+          -149.67
+          -17.45
+          -17.62
+        
+      
+      
+        LTER 1 polygon including LTER 0 on north shore
+        
+          -149.8455917
+          -149.829821
+          -17.47185366
+          -17.48641792
+        
+        
+          
+            -149.845591714532,-17.47414056509442 -149.8444519643552,-17.48505989649701 -149.8383270457441,-17.48426840091165 -149.8338147432263,-17.48641791890627 -149.829821007306,-17.48494822551147 -149.8320709284201,-17.4740284807948 -149.832080184047,-17.47322775964911 -149.8320960734944,-17.47185366062079 -149.8453810009447,-17.47265313575251 -149.845591714532,-17.47414056509442
+          
+        
+      
+      
+        Resilience 2; west of LTER 2
+        
+          -149.8238408
+          -149.8101874
+          -17.4666336
+          -17.4802756
+        
+        
+          
+            -149.8238406102009,-17.47430418558817 -149.8238408769413,-17.47732697036972 -149.8201840173129,-17.47973050758986 -149.8166874565608,-17.48360729520882 -149.8101878121024,-17.48027561604343 -149.8115695640242,-17.46663365474901 -149.8238406102009,-17.47430418558817
+          
+        
+      
+      
+        
+          
+            2010-07-23
+          
+          
+            2010-08-09
+          
+        
+      
+      
+        
+          Kingdom
+          Animalia
+          
+            PHYLUM
+            Chordata
+            
+              CLASS
+              Actinopterygii
+              
+                ORDER
+                Perciformes
+                
+                  FAMILY
+                  Acanthuridae
+                  
+                    GENUS
+                    Ctenochaetus
+                    
+                      SPECIES
+                      Ctenochaetus striatus
+                    
+                  
+                
+                
+                  FAMILY
+                  Scaridae
+                  
+                    GENUS
+                    Chlorurus
+                    
+                      SPECIES
+                      Chlorurus sordidus
+                    
+                  
+                
+              
+            
+          
+        
+      
+    
+    
+      
+        This is a short term dataset. No additional data collection is planned.
+                    Data are complete.
+      
+      notPlanned
+      
+        dataset
+        na
+        2012-04-23
+        Initial receipt of data: 
+                    Data were received in Excel spreadsheets from Tom Adam, post-doc, and entered to EML by Krystal Treiberg, REU.
+      
+      
+        metadata
+        na
+        2019-05-31
+        Revision 2 is metadata-only, for public release and EML modernizations (cksum, size byte, ORCiD, dateTime)
+        
+      
+    
+    
+      Moorea Coral Reef LTER
+      Information Manager
+      			Marine Science Institute
+			University of California
+			Santa Barbara, CA 93106-6150  USA
+      805.893.2071
+      mcrlter@msi.ucsb.edu
+      http://mcr.lternet.edu/about/contact
+    
+    
+      Moorea Coral Reef LTER
+      			Marine Science Institute
+			University of California
+			Santa Barbara, CA 93106-6150  USA
+      http://mcr.lternet.edu/
+    
+    
+      
+        
+          
+            Diver Observation
+            For the first data table (Focal_Herbivore_Bite_Rates), focal fish were
+                            observed during five different hour-long sampling periods (1:
+                            10:00-11:00; 2: 11:00-12:00, 3: 12:00-1:00, 4: 14:00-15:00, 5:
+                            15:00-16:00) local Moorea time. During each period two SCUBA divers each attempted to
+                            observe three individuals of each species for a period of five minutes.
+                            This protocol was repeated at two depths (~ 10 m and ~ 17 m) to enable
+                            among depth comparisons at this site. While divers were unable to
+                            recognize individual fish, observations at both depths were carried out
+                            in a large area to avoid repeatedly sampling the same individuals.
+                        
+          
+          
+            Locations
+            Forereef habitat within sites named LTER 1 and Resilience 2, both on the north shore.
+          
+          
+            Divers
+            Tom Adam and Matt Silverman
+          
+        
+      
+      
+        
+          
+             References for taxonomy 
+             Definitive source of taxonomic levels from family to species:
+                            Eschmeyer, W. N. (ed.) 'Catalog of Fishes' electronic version (6 May
+                            2010).
+                            http://research.calacademy.org/ichthyology/catalog/fishcatmain.asp 
+             Citation for taxonomic levels from phylum to family: Nelson, J.S.,
+                            'Fishes of the World', 4th Ed. John Wiley & Sons, Inc., Hoboken, New
+                            Jersey, 601 p., 2006 as well as recent rulings by the ICZN
+                            http://iczn.org/
+             Citation for taxonomic levels below family: Randall, J.E., 'Reef and
+                            Shore Fishes of the South Pacific', University of Hawaii Press,
+                            Honolulu, Hawaii, 707 p., 2005 
+          
+        
+      
+    
+    
+      The Moorea Coral Reef (MCR) LTER
+      
+        Russell Schmitt
+        Moorea Coral Reef LTER
+        Lead Principal Investigator
+        			Marine Science Institute
+			University of California
+			Santa Barbara, CA 93106-6150  USA
+        schmitt@lifesci.ucsb.edu
+        http://mcr.lternet.edu/people/russell-j-schmitt
+        Principal Investigator
+      
+      
+        Sally Holbrook
+        Moorea Coral Reef LTER
+        Principal Investigator
+        			Marine Science Institute
+			University of California
+			Santa Barbara, CA 93106-6150  USA
+        holbrook@lifesci.ucsb.edu
+        http://mcr.lternet.edu/people/sally-holbrook
+        Principal Investigator
+      
+      
+        Peter Edmunds
+        Moorea Coral Reef LTER
+        Principal  Investigator
+        			Department of Biological Sciences, California State University
+			18111 Nordhoff Street
+			Northridge, CA 91330-8303  USA
+        818.677.2502
+        peter.edmunds@csun.edu
+        http://mcr.lternet.edu/people/peter-edmunds
+        Principal Investigator
+      
+      
+        Robert Carpenter
+        Moorea Coral Reef LTER
+        Principal  Investigator
+        			Department of Biological Sciences, California State University
+			18111 Nordhoff Street
+			Northridge, CA 91330-8303  USA
+        818-677-3256
+        robert.carpenter@csun.edu
+        http://mcr.lternet.edu/people/robert-carpenter
+        Principal Investigator
+      
+      
+        NSF (LTER) MCR I #OCE-0417412, (RAPID) OCE-0937852, MCR II #OCE-1026851, MCR IIb #OCE-1236905, and MCR III #OCE-1637396
+      
+    
+    
+      Focal_Herbivore_Bite_Rates
+      Bite rates of individuals sampled as part of a balanced design
+      
+        MCR_LTER_HerbBite_Focal_Herb_Bite_Rates_2010_20120521.csv
+        15614
+        ccf06f85ce27e3d6c1e8a04bf814723c
+        ASCII
+        
+          
+            1
+            0
+            \r\n
+            column
+            
+              ,
+              no
+              "
+            
+          
+        
+        
+          
+            https://pasta.lternet.edu/package/data/eml/knb-lter-mcr/7002/2/3e5893c2c2d69770daca5b5b745956e9
+          
+          
+            
+              uid=MCR,o=lter,dc=ecoinformatics,dc=org
+              all
+            
+            
+              public
+              read
+            
+          
+        
+      
+      
+        
+          Date
+          Date
+          Date of observation as YYYY-MM-DD
+          string
+          
+            
+              YYYY-MM-DD
+              1 day
+            
+          
+        
+        
+          Site
+          Site
+          Site of observation.
+          string
+          
+            
+              
+                
+                  
+                    LTER_1
+                    LTER_1
+                  
+                  
+                    Resilience 2
+                    Resilience 2
+                  
+                
+              
+            
+          
+        
+        
+          Observer
+          Observer
+          First and last initials of the SCUBA diver.
+          string
+          
+            
+              
+                
+                  
+                    TA
+                    Thomas Adam
+                  
+                  
+                    MS
+                    Matt Silverman
+                  
+                
+              
+            
+          
+        
+        
+          Species
+          Species
+          Species binomial observed.
+          string
+          
+            
+              
+                
+                  
+                    Chlorurus sordidus
+                    Species is Chlorurus sordidus.
+                  
+                  
+                    Ctenochaetus striatus
+                    Species is Ctenochaetus striatus.
+                  
+                
+              
+            
+          
+        
+        
+          Size_cm
+          Size (cm)
+          Estimated size of focal fish to the nearest cm.
+          float
+          
+            
+              
+                centimeter
+              
+              1
+              
+                real
+                
+                  1
+                
+              
+            
+          
+          
+            NA
+            value not recorded or not available
+          
+        
+        
+          Stage
+          Stage
+          Chlorurus sordidus were categorized as Initial phase (IP) or Terminal phase (TP) based on coloration; not applicable to Ctenochaetus striatus.
+          string
+          
+            
+              
+                
+                  
+                    Initial_Phase
+                    Initial Phase
+                  
+                  
+                    Terminal_Phase
+                    Terminal Phase
+                  
+                
+              
+            
+          
+          
+            NA
+            Not Applicable
+          
+        
+        
+          Time_Beg
+          Beginning Time
+          Beginning time for observations.
+          string
+          
+            
+              hh:mm:ss
+              15 seconds
+            
+          
+          
+            NA
+            value not recorded or not available
+          
+        
+        
+          Time_End
+          End Time
+          End time for observations.
+          string
+          
+            
+              hh:mm:ss
+              1 to 10 seconds
+            
+          
+          
+            NA
+            value not recorded or not available
+          
+        
+        
+          Time_Period
+          Time Period
+          Which of five hour-long periods during which an observation occurred (see Protocol)
+          integer
+          
+            
+              
+                
+                  
+                    1
+                    10:00-11:00 local Moorea time, 24-hour clock
+                  
+                  
+                    2
+                    11:00-12:00 local Moorea time, 24-hour clock
+                  
+                  
+                    3
+                    12:00-1:00 local Moorea time, 24-hour clock
+                  
+                  
+                    4
+                    14:00-15:00 local Moorea time, 24-hour clock
+                  
+                  
+                    5
+                    15:00-16:00 local Moorea time, 24-hour clock
+                  
+                
+              
+            
+          
+          
+        
+        
+          Seconds_Observed
+          Seconds Observed
+          Total number of seconds the observation lasted.
+          integer
+          
+            
+              
+                second
+              
+              1
+              
+                whole
+                
+                  0
+                
+              
+            
+          
+          
+            NA
+            value not recorded or not available
+          
+        
+        
+          Depth_Beg
+          Begining depth
+          Depth at start of video segment, in feet. Positive is down.
+          integer
+          
+            
+              
+                feet
+              
+              1
+              
+                whole
+                
+                  0
+                
+              
+            
+          
+          
+            NA
+            value not recorded or not available
+          
+        
+        
+          Depth_End
+          Ending depth
+          Depth at end of video segment, in feet. Positive is down.
+          integer
+          
+            
+              
+                feet
+              
+              1
+              
+                whole
+                
+                  0
+                
+              
+            
+          
+          
+            NA
+            value not recorded or not available
+          
+        
+        
+          Depth_Cat
+          Depth Category
+          Depth as a two-level categorical factor; 10_m observations were initiated between 8 and 12 meters, and 17_m observations were initiated between 15 and 17 meters. Nearly all fish stayed within these bins during the 5 minute observation period.
+          string
+          
+            
+              
+                
+                  
+                    10_m
+                    Nominal depth is 10 meters. Observations initiated between 8 and 12 meters.
+                  
+                  
+                    17_m
+                    Nominal depth is 17 meters. Observations initiated between 15 and 17 meters.
+                  
+                
+              
+            
+          
+          
+            NA
+            value not recorded or not available
+          
+        
+        
+          Bare
+          Bites on Bare
+          Number of bites on bare substrate; bare denotes substrate not occupied by macroscopic benthic invertebrates, macroalgae, or Stegastes turf. Note that although we attempted to differentiate between bare substrate and CCA, in reality this was difficult.
+          integer
+          
+            
+              
+                number
+              
+              
+                whole
+                
+                  0
+                
+              
+            
+          
+          
+            NA
+            value not recorded or not available
+          
+        
+        
+          Rubble
+          Bites on Rubble
+          Number of bites on rubble (unconsolidated chunks of reef generally smaller than approximately 20 cm in diameter).
+          integer
+          
+            
+              
+                number
+              
+              
+                whole
+                
+                  0
+                
+              
+            
+          
+          
+            NA
+            value not recorded or not available
+          
+        
+        
+          CCA
+          Bites on CCA
+          Number of bites on crustose coralline algae. See also comments on Bare.
+          integer
+          
+            
+              
+                number
+              
+              
+                whole
+                
+                  0
+                
+              
+            
+          
+          
+            NA
+            value not recorded or not available
+          
+        
+        
+          Sand
+          Bites on Sand
+          Number of bites on sand.
+          integer
+          
+            
+              
+                number
+              
+              
+                whole
+                
+                  0
+                
+              
+            
+          
+          
+            NA
+            value not recorded or not available
+          
+        
+        
+          Other
+          Bites on Other
+          Number of bites on other substrates.
+          integer
+          
+            
+              
+                number
+              
+              
+                whole
+                
+                  0
+                
+              
+            
+          
+          
+            NA
+            value not recorded or not available
+          
+        
+        
+          Total_Bites
+          Total Bites
+          Total number of bites taken during an observation.
+          integer
+          
+            
+              
+                number
+              
+              
+                whole
+                
+                  0
+                
+              
+            
+          
+          
+            NA
+            value not recorded or not available
+          
+        
+        
+          Bite_Rate
+          Bite Rate
+          Bites per minute. (Total_Bites/Seconds_Observed)*60
+          float
+          
+            
+              
+                perMinute
+              
+              0.1
+              
+                real
+                
+                  0
+                
+              
+            
+          
+          
+            NA
+            value not recorded or not available
+          
+        
+        
+          Notes
+          Notes
+          Any relevant notes; notes mainly document aggressive encounters between fish.
+          string
+          
+            
+              
+                
+                  text
+                
+              
+            
+          
+          
+            NA
+            value not recorded or not available
+          
+        
+      
+      122
+    
+    
+      Additional_Bite_Rate_Data
+      Bite rates of individuals sampled opportunistically
+      
+        MCR_LTER_HerbBite_Addit_Bite_Rate_Data_2010_20120521.csv
+        5474
+        7616beb9202d4e03c8bcac5a2ca52c25
+        ASCII
+        
+          
+            1
+            0
+            \r\n
+            column
+            
+              ,
+              no
+              "
+            
+          
+        
+        
+          
+            https://pasta.lternet.edu/package/data/eml/knb-lter-mcr/7002/2/5841f8d78e0432d6039f40b51a11738c
+          
+          
+            
+              uid=MCR,o=lter,dc=ecoinformatics,dc=org
+              all
+            
+            
+              public
+              read
+            
+          
+        
+      
+      
+        
+          Date
+          Date
+          Date of observation as YYYY-MM-DD
+          string
+          
+            
+              YYYY-MM-DD
+              1 day
+            
+          
+        
+        
+          Site
+          Site
+          Site of observation.
+          string
+          
+            
+              
+                
+                  
+                    LTER_1
+                    LTER_1
+                  
+                  
+                    Resilience_2
+                    Resilience_2
+                  
+                
+              
+            
+          
+        
+        
+          Observer
+          Observer
+          First and last initials of the SCUBA diver.
+          string
+          
+            
+              
+                
+                  
+                    TA
+                    Thomas Adam
+                  
+                  
+                    MS
+                    Matt Silverman
+                  
+                
+              
+            
+          
+        
+        
+          Species
+          Species
+          Species binomial observed.
+          string
+          
+            
+              
+                
+                  
+                    Chlorurus sordidus
+                    Species is Chlorurus sordidus.
+                  
+                  
+                    Ctenochaetus striatus
+                    Species is Ctenochaetus striatus.
+                  
+                
+              
+            
+          
+        
+        
+          Size_cm
+          Size (cm)
+          Estimated size of focal fish to the nearest cm.
+          integer
+          
+            
+              
+                centimeter
+              
+              1
+              
+                real
+                
+                  1
+                
+              
+            
+          
+          
+            NA
+            value not recorded or not available
+          
+        
+        
+          Stage
+          Stage
+          Chlorurus sordidus were categorized as Initial phase (IP) or Terminal phase (TP) based on coloration; not applicable to Ctenochaetus striatus.
+          string
+          
+            
+              
+                
+                  
+                    Initial_Phase
+                    Initial Phase
+                  
+                  
+                    Terminal_Phase
+                    Terminal Phase
+                  
+                
+              
+            
+          
+          
+            NA
+            Not Applicable
+          
+        
+        
+          Time_Beg
+          Beginning Time
+          Beginning time for observations.
+          string
+          
+            
+              hh:mm:ss
+              1 second
+            
+          
+          
+            NA
+            value not recorded or not available
+          
+        
+        
+          Time_End
+          End Time
+          End time for observations.
+          string
+          
+            
+              hh:mm:ss
+              1 second
+            
+          
+          
+            NA
+            value not recorded or not available
+          
+        
+        
+          Seconds_Observed
+          Seconds Observed
+          Total number of seconds the observation lasted.
+          integer
+          
+            
+              
+                second
+              
+              
+                whole
+                
+                  0
+                
+              
+            
+          
+          
+            NA
+            value not recorded or not available
+          
+        
+        
+          Depth_Beg
+          Begining depth
+          Depth at start of video segment, in feet. Positive is down.
+          integer
+          
+            
+              
+                feet
+              
+              1
+              
+                whole
+                
+                  0
+                
+              
+            
+          
+          
+            NA
+            value not recorded or not available
+          
+        
+        
+          Depth_End
+          Ending depth
+          Depth at end of video segment, in feet. Positive is down.
+          integer
+          
+            
+              
+                feet
+              
+              1
+              
+                whole
+                
+                  0
+                
+              
+            
+          
+          
+            NA
+            value not recorded or not available
+          
+        
+        
+          Bare
+          Bites on Bare
+          Number of bites on bare substrate; bare denotes substrate not occupied by macroscopic benthic invertebrates, macroalgae, or Stegastes turf. Note that although we attempted to differentiate between bare substrate and CCA, in reality this was difficult.
+          integer
+          
+            
+              
+                number
+              
+              
+                whole
+                
+                  0
+                
+              
+            
+          
+          
+            NA
+            value not recorded or not available
+          
+        
+        
+          Rubble
+          Bites on Rubble
+          Number of bites on rubble (unconsolidated chunks of reef generally smaller than approximately 20 cm in diameter).
+          integer
+          
+            
+              
+                number
+              
+              
+                whole
+                
+                  0
+                
+              
+            
+          
+          
+            NA
+            value not recorded or not available
+          
+        
+        
+          CCA
+          Bites on CCA
+          Number of bites on crustose coralline algae. See also comments on Bare.
+          integer
+          
+            
+              
+                number
+              
+              
+                whole
+                
+                  0
+                
+              
+            
+          
+          
+            NA
+            value not recorded or not available
+          
+        
+        
+          Sand
+          Bites on Sand
+          Number of bites on sand.
+          integer
+          
+            
+              
+                number
+              
+              
+                whole
+                
+                  0
+                
+              
+            
+          
+          
+            NA
+            value not recorded or not available
+          
+        
+        
+          Other
+          Bites on Other
+          Number of bites on other substrates.
+          integer
+          
+            
+              
+                number
+              
+              
+                whole
+                
+                  0
+                
+              
+            
+          
+          
+            NA
+            value not recorded or not available
+          
+        
+        
+          Total_Bites
+          Total Bites
+          Total number of bites taken during an observation.
+          integer
+          
+            
+              
+                number
+              
+              
+                whole
+                
+                  0
+                
+              
+            
+          
+          
+            NA
+            value not recorded or not available
+          
+        
+        
+          Bite_Rate
+          Bite Rate
+          Bites per minute.
+          float
+          
+            
+              
+                perMinute
+              
+              1
+              
+                real
+                
+                  0
+                
+              
+            
+          
+          
+            NA
+            value not recorded or not available
+          
+        
+        
+          Notes
+          Notes
+          Any relevent notes; notes mainly document aggressive encounters between fish.
+          string
+          
+            
+              
+                
+                  text
+                
+              
+            
+          
+          
+            NA
+            value not recorded or not available
+          
+        
+      
+      43
+    
+  
+  
+    
+      
+        
+          .01 meters
+        
+        
+          Length
+        
+        
+          a number
+        
+        
+          Amount per minute
+        
+        
+          SI unit of time
+        
+      
+    
+  

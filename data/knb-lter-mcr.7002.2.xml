@@ -1,0 +1,1493 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eml:eml packageId="knb-lter-mcr.7002.2" scope="system"
+  system="https://pasta.edirepository.org"
+  xmlns:eml="eml://ecoinformatics.org/eml-2.1.1"
+  xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.1 http://nis.lternet.edu/schemas/EML/eml-2.1.1/eml.xsd">
+  <access authSystem="https://pasta.edirepository.org/authentication"
+    order="allowFirst" system="https://pasta.edirepository.org">
+    <allow>
+      <principal>uid=MCR,o=lter,dc=ecoinformatics,dc=org</principal>
+      <permission>all</permission>
+    </allow>
+    <allow>
+      <principal>public</principal>
+      <permission>read</permission>
+    </allow>
+  </access>
+  <dataset id="7002">
+    <!--<alternateIdentifier system="https://doi.org">10.6073/pasta/TODO</alternateIdentifier>-->
+    <alternateIdentifier>knb-lter-mcr.7002</alternateIdentifier>
+    <alternateIdentifier system="https://doi.org">doi:10.6073/pasta/5a6798c5694d5a58362ab42e584b7b71</alternateIdentifier>
+    <shortName>RAPID Herbivore Bite Rates</shortName>
+    <title>MCR LTER: Coral Reef Resilience: Herbivore Bite Rates on the North Shore Forereef July-August 2010</title>
+    <creator id="MCR">
+      <organizationName>Moorea Coral Reef LTER</organizationName>
+      <address>
+        <deliveryPoint>Marine Science Institute</deliveryPoint>
+        <deliveryPoint>University of California</deliveryPoint>
+        <city>Santa Barbara</city>
+        <administrativeArea>CA</administrativeArea>
+        <postalCode>93106-6150</postalCode>
+        <country>USA</country>
+      </address>
+      <onlineUrl>http://mcr.lternet.edu/</onlineUrl>
+    </creator>
+    <creator id="tadam">
+      <individualName>
+        <givenName>Tom</givenName>
+        <surName>Adam</surName>
+      </individualName>
+      <organizationName>Moorea Coral Reef LTER</organizationName>
+      <address>
+        <deliveryPoint>Marine Science Institute</deliveryPoint>
+        <deliveryPoint>University of California</deliveryPoint>
+        <city>Santa Barbara</city>
+        <administrativeArea>CA</administrativeArea>
+        <postalCode>93106-6150</postalCode>
+        <country>USA</country>
+      </address>
+      <electronicMailAddress>thomas.adam@lifesci.ucsb.edu</electronicMailAddress>
+      <userId directory="http://orcid.org">http://orcid.org/0000-0001-6146-0260</userId>
+      <!-- tadam -->
+    </creator>
+    <associatedParty id="abrooks">
+      <individualName>
+        <givenName>Andrew</givenName>
+        <surName>Brooks</surName>
+      </individualName>
+      <organizationName>Moorea Coral Reef LTER</organizationName>
+      <positionName>Investigator</positionName>
+      <address>
+        <deliveryPoint>Marine Science Institute</deliveryPoint>
+        <deliveryPoint>University of California</deliveryPoint>
+        <city>Santa Barbara</city>
+        <administrativeArea>CA</administrativeArea>
+        <postalCode>93106-6150</postalCode>
+        <country>USA</country>
+      </address>
+      <phone phonetype="voice">805.893.7670</phone>
+      <electronicMailAddress>AJBrooks@ucsb.edu</electronicMailAddress>
+      <userId directory="http://orcid.org">http://orcid.org/0000-0002-6651-1204</userId>
+      <!-- abrooks -->
+      <role>Investigator</role>
+    </associatedParty>
+    <associatedParty id="rschmitt">
+      <individualName>
+        <givenName>Russell</givenName>
+        <surName>Schmitt</surName>
+      </individualName>
+      <organizationName>Moorea Coral Reef LTER</organizationName>
+      <positionName>Principle Investigator</positionName>
+      <address>
+        <deliveryPoint>Marine Science Institute</deliveryPoint>
+        <deliveryPoint>University of California</deliveryPoint>
+        <city>Santa Barbara</city>
+        <administrativeArea>CA</administrativeArea>
+        <postalCode>93106-6150</postalCode>
+        <country>USA</country>
+      </address>
+      <phone phonetype="voice">805.893.2051</phone>
+      <electronicMailAddress>schmitt@lifesci.ucsb.edu</electronicMailAddress>
+      <userId directory="http://orcid.org">http://orcid.org/0000-0002-9674-4244</userId>
+      <!-- rschmitt -->
+      <role>Investigator</role>
+    </associatedParty>
+    <associatedParty id="sholbrook">
+      <individualName>
+        <givenName>Sally</givenName>
+        <surName>Holbrook</surName>
+      </individualName>
+      <organizationName>Moorea Coral Reef LTER</organizationName>
+      <positionName>Investigator</positionName>
+      <address>
+        <deliveryPoint>Marine Science Institute</deliveryPoint>
+        <deliveryPoint>University of California</deliveryPoint>
+        <city>Santa Barbara</city>
+        <administrativeArea>CA</administrativeArea>
+        <postalCode>93106-6150</postalCode>
+        <country>USA</country>
+      </address>
+      <phone phonetype="voice">805.893.3956</phone>
+      <electronicMailAddress>holbrook@lifesci.ucsb.edu</electronicMailAddress>
+      <userId directory="http://orcid.org">http://orcid.org/0000-0002-3015-3484</userId>
+      <!-- sholbrook -->
+      <role>Investigator</role>
+    </associatedParty>
+    <pubDate>2012-05-21</pubDate>
+    <language>english</language>
+    <abstract>
+      <para>These data describe bite rates of two abundant species of roving herbivorous fishes found on the forereef, Chlorurus sordidus (Scaridae), and Ctenochaetus striatus (Acanthuridae). During several days in July and August 2010, a SCUBA diver followed individual focal fish for a period of up to 5 minutes and recorded the number of bites taken as well the types of substrates bitten. Upon randomly locating a focal individual, divers estimated the total length of that individual as well as their depth at the initiation (and termination) of the observation. Data are organized in two data tables. The first data table (Focal_Herbivore_Bite_Rates) contains individuals that were observed at two depths (~ 10 m and ~ 17 m) at LTER 1 as part of a balanced sampling design (see Sampling Protocol/Design). The second data table (Additional_Bite_Rate_Data) contains individuals that were observed opportunistically at LTER 1 and Resilience 2. To minimize the effect of time of day on fish behavior, all data were collected between 10:00 and 16:00, a period of time which corresponds with peak feeding rates for many herbivorous fishes.</para>
+      <para> This material is based upon work supported by the U.S. National Science Foundation under
+        Grant No. OCE 16-37396 (and earlier awards) as well as a generous gift from the Gordon and
+        Betty Moore Foundation. Research was completed under permits issued by the French Polynesian
+        Government (Délégation à la Recherche) and the Haut-commissariat de la République en
+        Polynésie Francaise (DTRT) (Protocole d'Accueil 2005-2018). This work represents a
+        contribution of the Moorea Coral Reef (MCR) LTER Site. </para>
+    </abstract>
+    <keywordSet>
+      <keyword keywordType="theme">MCR</keyword>
+      <keyword keywordType="theme">LTER</keyword>
+      <keyword keywordType="theme">Moorea Coral Reef</keyword>
+      <keyword keywordType="place">French Polynesia</keyword>
+      <keyword keywordType="place">Moorea</keyword>
+    </keywordSet>
+    <keywordSet>
+      <keyword keywordType="theme">University of California Santa Barbara</keyword>
+      <keyword keywordType="theme">California State University Northridge</keyword>
+      <keyword keywordType="theme">NSF</keyword>
+      <keyword keywordType="theme">Gordon and Betty Moore Foundation</keyword>
+      <keyword keywordType="theme">Richard B. Gump South Pacific Research Station</keyword>
+    </keywordSet>
+    <keywordSet>
+      <keyword keywordType="theme">Primary Consumers</keyword>
+      <keyword keywordType="theme">Detritivores</keyword>
+    </keywordSet>
+    <keywordSet>
+      <keyword keywordType="theme">fishes</keyword>
+      <keyword keywordType="theme">trophic dynamics</keyword>
+      <keyword keywordType="theme">marine</keyword>
+      <keyword keywordType="theme">species</keyword>
+      <keyword keywordType="theme">benthic</keyword>
+      <keywordThesaurus>LTER Controlled Vocabulary</keywordThesaurus>
+    </keywordSet>
+    <keywordSet>
+      <keyword keywordType="theme">Fishes</keyword>
+      <keyword keywordType="theme">Tropical Fishes</keyword>
+      <keyword keywordType="theme">Coral Reef</keyword>
+      <keyword keywordType="theme">Detritus feeders</keyword>
+      <keyword keywordType="theme">Herbivores</keyword>
+      <keywordThesaurus>NBII Biocomplexity Thesaurus</keywordThesaurus>
+    </keywordSet>
+    <keywordSet>
+      <keyword keywordType="theme">Community</keyword>
+      <keyword keywordType="theme">Trophic Dynamics</keyword>
+      <keyword keywordType="theme">Marine</keyword>
+      <keywordThesaurus>KNB</keywordThesaurus>
+    </keywordSet>
+    <keywordSet>
+      <keyword keywordType="theme">Populations</keyword>
+      <keywordThesaurus>LTER Core Research Area</keywordThesaurus>
+    </keywordSet>
+    <keywordSet>
+      <keyword keywordType="theme">RAPID</keyword>
+      <keywordThesaurus>MCR Activity</keywordThesaurus>
+    </keywordSet>
+    <keywordSet>
+      <keyword keywordType="theme">Reef Resistance and Resilience</keyword>
+      <keywordThesaurus>Research Theme</keywordThesaurus>
+    </keywordSet>
+    <intellectualRights>
+
+      <para>
+  This data package is released under the Creative Commons license
+  Attribution 4.0 International (CC BY 4.0 , see
+  <ulink url="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</ulink>).
+  This license states that consumers ("Data Users" herein) may
+  distribute, adapt, reuse, remix, and build upon this work, as long as
+  they give appropriate credit, provide a link to the license, and
+  indicate if changes were made. If redistributed, a Data User may not
+  apply additional restrictions or technological measures that prevent
+  access.
+</para>
+      <para>
+  The Data User has an ethical obligation to cite the data source
+  appropriately in any publication or product that results from its use,
+  and notify the data contact or creator. Communication, collaboration,
+  or co-authorship (as appropriate) with the creators of this data
+  package is encouraged to prevent duplicate research or publication.
+  The Data User is urged to contact the authors of these data if any
+  questions about methodology or results occur. The Data User should
+  realize that these data may be actively used by others for ongoing
+  research and that coordination may be necessary to prevent duplication
+  or inappropriate use. The Data User should realize that
+  misinterpretation may occur if data are used outside of the context of
+  the original study. The Data User should be aware that data are
+  updated periodically and it is the responsibility of the Data User to
+  check for new versions of the data.
+</para>
+      <para>
+  While substantial efforts are made to ensure the accuracy of data and
+  associated documentation, complete accuracy of data sets cannot be
+  guaranteed. This data package (with its components) is made available
+  "as is" and with no warranty of accuracy or fitness for use. The
+  creators of this data package and the repository where these data were
+  obtained shall not be liable for any damages resulting from
+  misinterpretation, use or misuse of the data package or its
+  components.
+</para>
+    </intellectualRights>
+    <distribution>
+      <online>
+        <onlineDescription>MCR LTER site data catalog</onlineDescription>
+        <url function="information">http://mcr.lternet.edu/data/</url>
+      </online>
+    </distribution>
+    <coverage>
+      <!-- TODO Need to add RAPID site located on Forereef - Don't have coordinates yet -->
+      <geographicCoverage id="moorea_generic_box">
+        <geographicDescription>Moorea, French Polynesia</geographicDescription>
+        <boundingCoordinates>
+          <westBoundingCoordinate>-150.0</westBoundingCoordinate>
+          <eastBoundingCoordinate>-149.67</eastBoundingCoordinate>
+          <northBoundingCoordinate>-17.45</northBoundingCoordinate>
+          <southBoundingCoordinate>-17.62</southBoundingCoordinate>
+        </boundingCoordinates>
+      </geographicCoverage>
+      <geographicCoverage id="MCR_LTER_1_poly_for_public">
+        <geographicDescription>LTER 1 polygon including LTER 0 on north shore</geographicDescription>
+        <boundingCoordinates>
+          <westBoundingCoordinate>-149.8455917</westBoundingCoordinate>
+          <eastBoundingCoordinate>-149.829821</eastBoundingCoordinate>
+          <northBoundingCoordinate>-17.47185366</northBoundingCoordinate>
+          <southBoundingCoordinate>-17.48641792</southBoundingCoordinate>
+        </boundingCoordinates>
+        <datasetGPolygon>
+          <datasetGPolygonOuterGRing>
+            <gRing>-149.845591714532,-17.47414056509442 -149.8444519643552,-17.48505989649701 -149.8383270457441,-17.48426840091165 -149.8338147432263,-17.48641791890627 -149.829821007306,-17.48494822551147 -149.8320709284201,-17.4740284807948 -149.832080184047,-17.47322775964911 -149.8320960734944,-17.47185366062079 -149.8453810009447,-17.47265313575251 -149.845591714532,-17.47414056509442</gRing>
+          </datasetGPolygonOuterGRing>
+        </datasetGPolygon>
+      </geographicCoverage>
+      <geographicCoverage id="Resilience 2">
+        <geographicDescription>Resilience 2; west of LTER 2</geographicDescription>
+        <boundingCoordinates>
+          <westBoundingCoordinate>-149.8238408</westBoundingCoordinate>
+          <eastBoundingCoordinate>-149.8101874</eastBoundingCoordinate>
+          <northBoundingCoordinate>-17.4666336</northBoundingCoordinate>
+          <southBoundingCoordinate>-17.4802756</southBoundingCoordinate>
+        </boundingCoordinates>
+        <datasetGPolygon>
+          <datasetGPolygonOuterGRing>
+            <gRing>-149.8238406102009,-17.47430418558817 -149.8238408769413,-17.47732697036972 -149.8201840173129,-17.47973050758986 -149.8166874565608,-17.48360729520882 -149.8101878121024,-17.48027561604343 -149.8115695640242,-17.46663365474901 -149.8238406102009,-17.47430418558817</gRing>
+          </datasetGPolygonOuterGRing>
+        </datasetGPolygon>
+      </geographicCoverage>
+      <temporalCoverage>
+        <rangeOfDates>
+          <beginDate>
+            <calendarDate>2010-07-23</calendarDate>
+          </beginDate>
+          <endDate>
+            <calendarDate>2010-08-09</calendarDate>
+          </endDate>
+        </rangeOfDates>
+      </temporalCoverage>
+      <taxonomicCoverage>
+        <taxonomicClassification>
+          <taxonRankName>Kingdom</taxonRankName>
+          <taxonRankValue>Animalia</taxonRankValue>
+          <taxonomicClassification>
+            <taxonRankName>PHYLUM</taxonRankName>
+            <taxonRankValue>Chordata</taxonRankValue>
+            <taxonomicClassification>
+              <taxonRankName>CLASS</taxonRankName>
+              <taxonRankValue>Actinopterygii</taxonRankValue>
+              <taxonomicClassification>
+                <taxonRankName>ORDER</taxonRankName>
+                <taxonRankValue>Perciformes</taxonRankValue>
+                <taxonomicClassification>
+                  <taxonRankName>FAMILY</taxonRankName>
+                  <taxonRankValue>Acanthuridae</taxonRankValue>
+                  <taxonomicClassification>
+                    <taxonRankName>GENUS</taxonRankName>
+                    <taxonRankValue>Ctenochaetus</taxonRankValue>
+                    <taxonomicClassification>
+                      <taxonRankName>SPECIES</taxonRankName>
+                      <taxonRankValue>Ctenochaetus striatus</taxonRankValue>
+                    </taxonomicClassification>
+                  </taxonomicClassification>
+                </taxonomicClassification>
+                <taxonomicClassification>
+                  <taxonRankName>FAMILY</taxonRankName>
+                  <taxonRankValue>Scaridae</taxonRankValue>
+                  <taxonomicClassification>
+                    <taxonRankName>GENUS</taxonRankName>
+                    <taxonRankValue>Chlorurus</taxonRankValue>
+                    <taxonomicClassification>
+                      <taxonRankName>SPECIES</taxonRankName>
+                      <taxonRankValue>Chlorurus sordidus</taxonRankValue>
+                    </taxonomicClassification>
+                  </taxonomicClassification>
+                </taxonomicClassification>
+              </taxonomicClassification>
+            </taxonomicClassification>
+          </taxonomicClassification>
+        </taxonomicClassification>
+      </taxonomicCoverage>
+    </coverage>
+    <maintenance>
+      <description>
+        <para>This is a short term dataset. No additional data collection is planned.
+                    Data are complete.</para>
+      </description>
+      <maintenanceUpdateFrequency>notPlanned</maintenanceUpdateFrequency>
+      <changeHistory>
+        <changeScope>dataset</changeScope>
+        <oldValue>na</oldValue>
+        <changeDate>2012-04-23</changeDate>
+        <comment>Initial receipt of data: 
+                    Data were received in Excel spreadsheets from Tom Adam, post-doc, and entered to EML by Krystal Treiberg, REU.</comment>
+      </changeHistory>
+      <changeHistory>
+        <changeScope>metadata</changeScope>
+        <oldValue>na</oldValue>
+        <changeDate>2019-05-31</changeDate>
+        <comment>Revision 2 is metadata-only, for public release and EML modernizations (cksum, size byte, ORCiD, dateTime)
+        </comment>
+      </changeHistory>
+    </maintenance>
+    <contact>
+      <organizationName>Moorea Coral Reef LTER</organizationName>
+      <positionName>Information Manager</positionName>
+      <address>
+        <deliveryPoint>Marine Science Institute</deliveryPoint>
+        <deliveryPoint>University of California</deliveryPoint>
+        <city>Santa Barbara</city>
+        <administrativeArea>CA</administrativeArea>
+        <postalCode>93106-6150</postalCode>
+        <country>USA</country>
+      </address>
+      <phone phonetype="voice">805.893.2071</phone>
+      <electronicMailAddress>mcrlter@msi.ucsb.edu</electronicMailAddress>
+      <onlineUrl>http://mcr.lternet.edu/about/contact</onlineUrl>
+    </contact>
+    <publisher>
+      <organizationName>Moorea Coral Reef LTER</organizationName>
+      <address>
+        <deliveryPoint>Marine Science Institute</deliveryPoint>
+        <deliveryPoint>University of California</deliveryPoint>
+        <city>Santa Barbara</city>
+        <administrativeArea>CA</administrativeArea>
+        <postalCode>93106-6150</postalCode>
+        <country>USA</country>
+      </address>
+      <onlineUrl>http://mcr.lternet.edu/</onlineUrl>
+    </publisher>
+    <methods>
+      <methodStep>
+        <description>
+          <section>
+            <title>Diver Observation</title>
+            <para>For the first data table (Focal_Herbivore_Bite_Rates), focal fish were
+                            observed during five different hour-long sampling periods (1:
+                            10:00-11:00; 2: 11:00-12:00, 3: 12:00-1:00, 4: 14:00-15:00, 5:
+                            15:00-16:00) local Moorea time. During each period two SCUBA divers each attempted to
+                            observe three individuals of each species for a period of five minutes.
+                            This protocol was repeated at two depths (~ 10 m and ~ 17 m) to enable
+                            among depth comparisons at this site. While divers were unable to
+                            recognize individual fish, observations at both depths were carried out
+                            in a large area to avoid repeatedly sampling the same individuals.
+                        </para>
+          </section>
+          <section>
+            <title>Locations</title>
+            <para>Forereef habitat within sites named LTER 1 and Resilience 2, both on the north shore.</para>
+          </section>
+          <section>
+            <title>Divers</title>
+            <para>Tom Adam and Matt Silverman</para>
+          </section>
+        </description>
+      </methodStep>
+      <methodStep>
+        <description>
+          <section>
+            <title> References for taxonomy </title>
+            <para> Definitive source of taxonomic levels from family to species:
+                            Eschmeyer, W. N. (ed.) 'Catalog of Fishes' electronic version (6 May
+                            2010).
+                            http://research.calacademy.org/ichthyology/catalog/fishcatmain.asp </para>
+            <para> Citation for taxonomic levels from phylum to family: Nelson, J.S.,
+                            'Fishes of the World', 4th Ed. John Wiley &amp; Sons, Inc., Hoboken, New
+                            Jersey, 601 p., 2006 as well as recent rulings by the ICZN
+                            http://iczn.org/</para>
+            <para> Citation for taxonomic levels below family: Randall, J.E., 'Reef and
+                            Shore Fishes of the South Pacific', University of Hawaii Press,
+                            Honolulu, Hawaii, 707 p., 2005 </para>
+          </section>
+        </description>
+      </methodStep>
+    </methods>
+    <project>
+      <title>The Moorea Coral Reef (MCR) LTER</title>
+      <personnel id="RussID">
+        <individualName>
+          <givenName>Russell</givenName>
+          <surName>Schmitt</surName>
+        </individualName>
+        <organizationName>Moorea Coral Reef LTER</organizationName>
+        <positionName>Lead Principal Investigator</positionName>
+        <address>
+          <deliveryPoint>Marine Science Institute</deliveryPoint>
+          <deliveryPoint>University of California</deliveryPoint>
+          <city>Santa Barbara</city>
+          <administrativeArea>CA</administrativeArea>
+          <postalCode>93106-6150</postalCode>
+          <country>USA</country>
+        </address>
+        <electronicMailAddress>schmitt@lifesci.ucsb.edu</electronicMailAddress>
+        <onlineUrl>http://mcr.lternet.edu/people/russell-j-schmitt</onlineUrl>
+        <role>Principal Investigator</role>
+      </personnel>
+      <personnel id="SallyID">
+        <individualName>
+          <givenName>Sally</givenName>
+          <surName>Holbrook</surName>
+        </individualName>
+        <organizationName>Moorea Coral Reef LTER</organizationName>
+        <positionName>Principal Investigator</positionName>
+        <address>
+          <deliveryPoint>Marine Science Institute</deliveryPoint>
+          <deliveryPoint>University of California</deliveryPoint>
+          <city>Santa Barbara</city>
+          <administrativeArea>CA</administrativeArea>
+          <postalCode>93106-6150</postalCode>
+          <country>USA</country>
+        </address>
+        <electronicMailAddress>holbrook@lifesci.ucsb.edu</electronicMailAddress>
+        <onlineUrl>http://mcr.lternet.edu/people/sally-holbrook</onlineUrl>
+        <role>Principal Investigator</role>
+      </personnel>
+      <personnel id="PeteID">
+        <individualName>
+          <givenName>Peter</givenName>
+          <surName>Edmunds</surName>
+        </individualName>
+        <organizationName>Moorea Coral Reef LTER</organizationName>
+        <positionName>Principal  Investigator</positionName>
+        <address>
+          <deliveryPoint>Department of Biological Sciences, California State University</deliveryPoint>
+          <deliveryPoint>18111 Nordhoff Street</deliveryPoint>
+          <city>Northridge</city>
+          <administrativeArea>CA</administrativeArea>
+          <postalCode>91330-8303</postalCode>
+          <country>USA</country>
+        </address>
+        <phone phonetype="voice">818.677.2502</phone>
+        <electronicMailAddress>peter.edmunds@csun.edu</electronicMailAddress>
+        <onlineUrl>http://mcr.lternet.edu/people/peter-edmunds</onlineUrl>
+        <role>Principal Investigator</role>
+      </personnel>
+      <personnel id="BobID">
+        <individualName>
+          <givenName>Robert</givenName>
+          <surName>Carpenter</surName>
+        </individualName>
+        <organizationName>Moorea Coral Reef LTER</organizationName>
+        <positionName>Principal  Investigator</positionName>
+        <address>
+          <deliveryPoint>Department of Biological Sciences, California State University</deliveryPoint>
+          <deliveryPoint>18111 Nordhoff Street</deliveryPoint>
+          <city>Northridge</city>
+          <administrativeArea>CA</administrativeArea>
+          <postalCode>91330-8303</postalCode>
+          <country>USA</country>
+        </address>
+        <phone phonetype="voice">818-677-3256</phone>
+        <electronicMailAddress>robert.carpenter@csun.edu</electronicMailAddress>
+        <onlineUrl>http://mcr.lternet.edu/people/robert-carpenter</onlineUrl>
+        <role>Principal Investigator</role>
+      </personnel>
+      <funding>
+        <para>NSF (LTER) MCR I #OCE-0417412, (RAPID) OCE-0937852, MCR II #OCE-1026851, MCR IIb #OCE-1236905, and MCR III #OCE-1637396</para>
+      </funding>
+    </project>
+    <dataTable id="focal_herbivore_bite_rates">
+      <entityName>Focal_Herbivore_Bite_Rates</entityName>
+      <entityDescription>Bite rates of individuals sampled as part of a balanced design</entityDescription>
+      <physical>
+        <objectName>MCR_LTER_HerbBite_Focal_Herb_Bite_Rates_2010_20120521.csv</objectName>
+        <size unit="byte">15614</size>
+        <authentication method="MD5">ccf06f85ce27e3d6c1e8a04bf814723c</authentication>
+        <characterEncoding>ASCII</characterEncoding>
+        <dataFormat>
+          <textFormat>
+            <numHeaderLines>1</numHeaderLines>
+            <numFooterLines>0</numFooterLines>
+            <recordDelimiter>\r\n</recordDelimiter>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+              <collapseDelimiters>no</collapseDelimiters>
+              <quoteCharacter>"</quoteCharacter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url function="download">https://pasta.lternet.edu/package/data/eml/knb-lter-mcr/7002/2/3e5893c2c2d69770daca5b5b745956e9</url>
+          </online>
+          <access
+            authSystem="https://pasta.edirepository.org/authentication"
+            order="allowFirst" system="https://pasta.edirepository.org">
+            <allow>
+              <principal>uid=MCR,o=lter,dc=ecoinformatics,dc=org</principal>
+              <permission>all</permission>
+            </allow>
+            <allow>
+              <principal>public</principal>
+              <permission>read</permission>
+            </allow>
+          </access>
+        </distribution>
+      </physical>
+      <attributeList>
+        <attribute id="date">
+          <attributeName>Date</attributeName>
+          <attributeLabel>Date</attributeLabel>
+          <attributeDefinition>Date of observation as YYYY-MM-DD</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">string</storageType>
+          <measurementScale>
+            <dateTime>
+              <formatString>YYYY-MM-DD</formatString>
+              <dateTimePrecision>1 day</dateTimePrecision>
+            </dateTime>
+          </measurementScale>
+        </attribute>
+        <attribute id="site">
+          <attributeName>Site</attributeName>
+          <attributeLabel>Site</attributeLabel>
+          <attributeDefinition>Site of observation.</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain enforced="yes">
+                  <codeDefinition>
+                    <code>LTER_1</code>
+                    <definition>LTER_1</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Resilience 2</code>
+                    <definition>Resilience 2</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute id="observer">
+          <attributeName>Observer</attributeName>
+          <attributeLabel>Observer</attributeLabel>
+          <attributeDefinition>First and last initials of the SCUBA diver.</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain enforced="yes">
+                  <codeDefinition>
+                    <code>TA</code>
+                    <definition>Thomas Adam</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>MS</code>
+                    <definition>Matt Silverman</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute id="species">
+          <attributeName>Species</attributeName>
+          <attributeLabel>Species</attributeLabel>
+          <attributeDefinition>Species binomial observed.</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain enforced="yes">
+                  <codeDefinition>
+                    <code>Chlorurus sordidus</code>
+                    <definition>Species is Chlorurus sordidus.</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Ctenochaetus striatus</code>
+                    <definition>Species is Ctenochaetus striatus.</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute id="size_cm">
+          <attributeName>Size_cm</attributeName>
+          <attributeLabel>Size (cm)</attributeLabel>
+          <attributeDefinition>Estimated size of focal fish to the nearest cm.</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>centimeter</customUnit>
+              </unit>
+              <precision>1</precision>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">1</minimum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>value not recorded or not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute id="stage">
+          <attributeName>Stage</attributeName>
+          <attributeLabel>Stage</attributeLabel>
+          <attributeDefinition>Chlorurus sordidus were categorized as Initial phase (IP) or Terminal phase (TP) based on coloration; not applicable to Ctenochaetus striatus.</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain enforced="yes">
+                  <codeDefinition>
+                    <code>Initial_Phase</code>
+                    <definition>Initial Phase</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Terminal_Phase</code>
+                    <definition>Terminal Phase</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>Not Applicable</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute id="time_beg">
+          <attributeName>Time_Beg</attributeName>
+          <attributeLabel>Beginning Time</attributeLabel>
+          <attributeDefinition>Beginning time for observations.</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">string</storageType>
+          <measurementScale>
+            <dateTime>
+              <formatString>hh:mm:ss</formatString>
+              <dateTimePrecision>15 seconds</dateTimePrecision>
+            </dateTime>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>value not recorded or not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute id="time_end">
+          <attributeName>Time_End</attributeName>
+          <attributeLabel>End Time</attributeLabel>
+          <attributeDefinition>End time for observations.</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">string</storageType>
+          <measurementScale>
+            <dateTime>
+              <formatString>hh:mm:ss</formatString>
+              <dateTimePrecision>1 to 10 seconds</dateTimePrecision>
+            </dateTime>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>value not recorded or not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute id="time_period">
+          <attributeName>Time_Period</attributeName>
+          <attributeLabel>Time Period</attributeLabel>
+          <attributeDefinition>Which of five hour-long periods during which an observation occurred (see Protocol)</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">integer</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain enforced="yes">
+                  <codeDefinition>
+                    <code>1</code>
+                    <definition>10:00-11:00 local Moorea time, 24-hour clock</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>2</code>
+                    <definition>11:00-12:00 local Moorea time, 24-hour clock</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>3</code>
+                    <definition>12:00-1:00 local Moorea time, 24-hour clock</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>4</code>
+                    <definition>14:00-15:00 local Moorea time, 24-hour clock</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>5</code>
+                    <definition>15:00-16:00 local Moorea time, 24-hour clock</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+          <!-- no missing value.  this is part of pk. -->
+        </attribute>
+        <attribute id="seconds_observed">
+          <attributeName>Seconds_Observed</attributeName>
+          <attributeLabel>Seconds Observed</attributeLabel>
+          <attributeDefinition>Total number of seconds the observation lasted.</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">integer</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>second</customUnit>
+              </unit>
+              <precision>1</precision>
+              <numericDomain>
+                <numberType>whole</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>value not recorded or not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute id="depth_beg">
+          <attributeName>Depth_Beg</attributeName>
+          <attributeLabel>Begining depth</attributeLabel>
+          <attributeDefinition>Depth at start of video segment, in feet. Positive is down.</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">integer</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>feet</customUnit>
+              </unit>
+              <precision>1</precision>
+              <numericDomain>
+                <numberType>whole</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>value not recorded or not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute id="depth_end">
+          <attributeName>Depth_End</attributeName>
+          <attributeLabel>Ending depth</attributeLabel>
+          <attributeDefinition>Depth at end of video segment, in feet. Positive is down.</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">integer</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>feet</customUnit>
+              </unit>
+              <precision>1</precision>
+              <numericDomain>
+                <numberType>whole</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>value not recorded or not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute id="depth_cat">
+          <attributeName>Depth_Cat</attributeName>
+          <attributeLabel>Depth Category</attributeLabel>
+          <attributeDefinition>Depth as a two-level categorical factor; 10_m observations were initiated between 8 and 12 meters, and 17_m observations were initiated between 15 and 17 meters. Nearly all fish stayed within these bins during the 5 minute observation period.</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain enforced="yes">
+                  <codeDefinition>
+                    <code>10_m</code>
+                    <definition>Nominal depth is 10 meters. Observations initiated between 8 and 12 meters.</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>17_m</code>
+                    <definition>Nominal depth is 17 meters. Observations initiated between 15 and 17 meters.</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>value not recorded or not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute id="bare">
+          <attributeName>Bare</attributeName>
+          <attributeLabel>Bites on Bare</attributeLabel>
+          <attributeDefinition>Number of bites on bare substrate; bare denotes substrate not occupied by macroscopic benthic invertebrates, macroalgae, or Stegastes turf. Note that although we attempted to differentiate between bare substrate and CCA, in reality this was difficult.</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">integer</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>number</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>whole</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>value not recorded or not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute id="rubble">
+          <attributeName>Rubble</attributeName>
+          <attributeLabel>Bites on Rubble</attributeLabel>
+          <attributeDefinition>Number of bites on rubble (unconsolidated chunks of reef generally smaller than approximately 20 cm in diameter).</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">integer</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>number</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>whole</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>value not recorded or not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute id="CCA">
+          <attributeName>CCA</attributeName>
+          <attributeLabel>Bites on CCA</attributeLabel>
+          <attributeDefinition>Number of bites on crustose coralline algae. See also comments on Bare.</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">integer</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>number</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>whole</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>value not recorded or not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute id="sand">
+          <attributeName>Sand</attributeName>
+          <attributeLabel>Bites on Sand</attributeLabel>
+          <attributeDefinition>Number of bites on sand.</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">integer</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>number</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>whole</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>value not recorded or not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute id="other">
+          <attributeName>Other</attributeName>
+          <attributeLabel>Bites on Other</attributeLabel>
+          <attributeDefinition>Number of bites on other substrates.</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">integer</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>number</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>whole</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>value not recorded or not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute id="total_bites">
+          <attributeName>Total_Bites</attributeName>
+          <attributeLabel>Total Bites</attributeLabel>
+          <attributeDefinition>Total number of bites taken during an observation.</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">integer</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>number</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>whole</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>value not recorded or not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute id="bite_rate">
+          <attributeName>Bite_Rate</attributeName>
+          <attributeLabel>Bite Rate</attributeLabel>
+          <attributeDefinition>Bites per minute. (Total_Bites/Seconds_Observed)*60</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>perMinute</customUnit>
+              </unit>
+              <precision>0.1</precision>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>value not recorded or not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute id="notes">
+          <attributeName>Notes</attributeName>
+          <attributeLabel>Notes</attributeLabel>
+          <attributeDefinition>Any relevant notes; notes mainly document aggressive encounters between fish.</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>text</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>value not recorded or not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+      </attributeList>
+      <numberOfRecords>122</numberOfRecords>
+    </dataTable>
+    <dataTable id="additional_bite_rate_data">
+      <entityName>Additional_Bite_Rate_Data</entityName>
+      <entityDescription>Bite rates of individuals sampled opportunistically</entityDescription>
+      <physical>
+        <objectName>MCR_LTER_HerbBite_Addit_Bite_Rate_Data_2010_20120521.csv</objectName>
+        <size unit="byte">5474</size>
+        <authentication method="MD5">7616beb9202d4e03c8bcac5a2ca52c25</authentication>
+        <characterEncoding>ASCII</characterEncoding>
+        <dataFormat>
+          <textFormat>
+            <numHeaderLines>1</numHeaderLines>
+            <numFooterLines>0</numFooterLines>
+            <recordDelimiter>\r\n</recordDelimiter>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+              <collapseDelimiters>no</collapseDelimiters>
+              <quoteCharacter>"</quoteCharacter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url function="download">https://pasta.lternet.edu/package/data/eml/knb-lter-mcr/7002/2/5841f8d78e0432d6039f40b51a11738c</url>
+          </online>
+          <access
+            authSystem="https://pasta.edirepository.org/authentication"
+            order="allowFirst" system="https://pasta.edirepository.org">
+            <allow>
+              <principal>uid=MCR,o=lter,dc=ecoinformatics,dc=org</principal>
+              <permission>all</permission>
+            </allow>
+            <allow>
+              <principal>public</principal>
+              <permission>read</permission>
+            </allow>
+          </access>
+        </distribution>
+      </physical>
+      <attributeList>
+        <attribute id="date_1">
+          <attributeName>Date</attributeName>
+          <attributeLabel>Date</attributeLabel>
+          <attributeDefinition>Date of observation as YYYY-MM-DD</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">string</storageType>
+          <measurementScale>
+            <dateTime>
+              <formatString>YYYY-MM-DD</formatString>
+              <dateTimePrecision>1 day</dateTimePrecision>
+            </dateTime>
+          </measurementScale>
+        </attribute>
+        <attribute id="site_1">
+          <attributeName>Site</attributeName>
+          <attributeLabel>Site</attributeLabel>
+          <attributeDefinition>Site of observation.</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain enforced="yes">
+                  <codeDefinition>
+                    <code>LTER_1</code>
+                    <definition>LTER_1</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Resilience_2</code>
+                    <definition>Resilience_2</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute id="observer_1">
+          <attributeName>Observer</attributeName>
+          <attributeLabel>Observer</attributeLabel>
+          <attributeDefinition>First and last initials of the SCUBA diver.</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain enforced="yes">
+                  <codeDefinition>
+                    <code>TA</code>
+                    <definition>Thomas Adam</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>MS</code>
+                    <definition>Matt Silverman</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute id="species_1">
+          <attributeName>Species</attributeName>
+          <attributeLabel>Species</attributeLabel>
+          <attributeDefinition>Species binomial observed.</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain enforced="yes">
+                  <codeDefinition>
+                    <code>Chlorurus sordidus</code>
+                    <definition>Species is Chlorurus sordidus.</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Ctenochaetus striatus</code>
+                    <definition>Species is Ctenochaetus striatus.</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute id="size_cm_1">
+          <attributeName>Size_cm</attributeName>
+          <attributeLabel>Size (cm)</attributeLabel>
+          <attributeDefinition>Estimated size of focal fish to the nearest cm.</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">integer</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>centimeter</customUnit>
+              </unit>
+              <precision>1</precision>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">1</minimum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>value not recorded or not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute id="stage_1">
+          <attributeName>Stage</attributeName>
+          <attributeLabel>Stage</attributeLabel>
+          <attributeDefinition>Chlorurus sordidus were categorized as Initial phase (IP) or Terminal phase (TP) based on coloration; not applicable to Ctenochaetus striatus.</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain enforced="yes">
+                  <codeDefinition>
+                    <code>Initial_Phase</code>
+                    <definition>Initial Phase</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Terminal_Phase</code>
+                    <definition>Terminal Phase</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>Not Applicable</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute id="time_beg_1">
+          <attributeName>Time_Beg</attributeName>
+          <attributeLabel>Beginning Time</attributeLabel>
+          <attributeDefinition>Beginning time for observations.</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">string</storageType>
+          <measurementScale>
+            <dateTime>
+              <formatString>hh:mm:ss</formatString>
+              <dateTimePrecision>1 second</dateTimePrecision>
+            </dateTime>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>value not recorded or not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute id="time_end_1">
+          <attributeName>Time_End</attributeName>
+          <attributeLabel>End Time</attributeLabel>
+          <attributeDefinition>End time for observations.</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">string</storageType>
+          <measurementScale>
+            <dateTime>
+              <formatString>hh:mm:ss</formatString>
+              <dateTimePrecision>1 second</dateTimePrecision>
+            </dateTime>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>value not recorded or not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute id="seconds_observed_1">
+          <attributeName>Seconds_Observed</attributeName>
+          <attributeLabel>Seconds Observed</attributeLabel>
+          <attributeDefinition>Total number of seconds the observation lasted.</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">integer</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>second</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>whole</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>value not recorded or not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute id="depth_beg_1">
+          <attributeName>Depth_Beg</attributeName>
+          <attributeLabel>Begining depth</attributeLabel>
+          <attributeDefinition>Depth at start of video segment, in feet. Positive is down.</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">integer</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>feet</customUnit>
+              </unit>
+              <precision>1</precision>
+              <numericDomain>
+                <numberType>whole</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>value not recorded or not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute id="depth_end_1">
+          <attributeName>Depth_End</attributeName>
+          <attributeLabel>Ending depth</attributeLabel>
+          <attributeDefinition>Depth at end of video segment, in feet. Positive is down.</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">integer</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>feet</customUnit>
+              </unit>
+              <precision>1</precision>
+              <numericDomain>
+                <numberType>whole</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>value not recorded or not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute id="bare_1">
+          <attributeName>Bare</attributeName>
+          <attributeLabel>Bites on Bare</attributeLabel>
+          <attributeDefinition>Number of bites on bare substrate; bare denotes substrate not occupied by macroscopic benthic invertebrates, macroalgae, or Stegastes turf. Note that although we attempted to differentiate between bare substrate and CCA, in reality this was difficult.</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">integer</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>number</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>whole</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>value not recorded or not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute id="rubble_1">
+          <attributeName>Rubble</attributeName>
+          <attributeLabel>Bites on Rubble</attributeLabel>
+          <attributeDefinition>Number of bites on rubble (unconsolidated chunks of reef generally smaller than approximately 20 cm in diameter).</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">integer</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>number</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>whole</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>value not recorded or not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute id="CCA_1">
+          <attributeName>CCA</attributeName>
+          <attributeLabel>Bites on CCA</attributeLabel>
+          <attributeDefinition>Number of bites on crustose coralline algae. See also comments on Bare.</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">integer</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>number</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>whole</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>value not recorded or not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute id="sand_1">
+          <attributeName>Sand</attributeName>
+          <attributeLabel>Bites on Sand</attributeLabel>
+          <attributeDefinition>Number of bites on sand.</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">integer</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>number</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>whole</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>value not recorded or not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute id="other_1">
+          <attributeName>Other</attributeName>
+          <attributeLabel>Bites on Other</attributeLabel>
+          <attributeDefinition>Number of bites on other substrates.</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">integer</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>number</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>whole</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>value not recorded or not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute id="total_bites_1">
+          <attributeName>Total_Bites</attributeName>
+          <attributeLabel>Total Bites</attributeLabel>
+          <attributeDefinition>Total number of bites taken during an observation.</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">integer</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>number</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>whole</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>value not recorded or not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute id="bite_rate_1">
+          <attributeName>Bite_Rate</attributeName>
+          <attributeLabel>Bite Rate</attributeLabel>
+          <attributeDefinition>Bites per minute.</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>perMinute</customUnit>
+              </unit>
+              <precision>1</precision>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>value not recorded or not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute id="notes_1">
+          <attributeName>Notes</attributeName>
+          <attributeLabel>Notes</attributeLabel>
+          <attributeDefinition>Any relevent notes; notes mainly document aggressive encounters between fish.</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>text</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>value not recorded or not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+      </attributeList>
+      <numberOfRecords>43</numberOfRecords>
+    </dataTable>
+  </dataset>
+  <additionalMetadata>
+    <metadata>
+      <stmml:unitList>
+        <stmml:unit abbreviation="cm" id="centimeter"
+          multiplierToSI="0.01" name="centimeter" parentSI="meter">
+          <stmml:description>.01 meters</stmml:description>
+        </stmml:unit>
+        <stmml:unit abbreviation="ft" constantToSI="0" id="feet"
+          multiplierToSI="0.3048" name="feet" parentSI="meter" unitType="length">
+          <stmml:description>Length</stmml:description>
+        </stmml:unit>
+        <stmml:unit id="number" name="number" unitType="dimensionless">
+          <stmml:description>a number</stmml:description>
+        </stmml:unit>
+        <stmml:unit abbreviation="min-1" constantToSI="0" id="perMinute"
+          multiplierToSI="60" name="perMinute" parentSI="hertz" unitType="frequency">
+          <stmml:description>Amount per minute</stmml:description>
+        </stmml:unit>
+        <stmml:unit abbreviation="sec" id="second" multiplierToSI="1"
+          name="second" unitType="time">
+          <stmml:description>SI unit of time</stmml:description>
+        </stmml:unit>
+      </stmml:unitList>
+    </metadata>
+  </additionalMetadata>
+</eml:eml>
