@@ -9,7 +9,7 @@
 <meta name="author" content="Jaslyn Miura">
 <meta name="dcterms.date" content="2025-12-04">
 
-<title>Final Project</title>
+<title>Grazing Patterns of Herbivorous Fish in Moʻorea</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -72,6 +72,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="analysis_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="analysis_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="analysis_files/libs/bootstrap/bootstrap-d6a003b94517c951b2d65075d42fb01b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="analysis_files/libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="analysis_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -113,7 +115,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Final Project</h1>
+<h1 class="title">Grazing Patterns of Herbivorous Fish in Moʻorea</h1>
 </div>
 
 
@@ -144,18 +146,25 @@ window.Quarto = {
 
 <section id="background" class="level1">
 <h1>Background</h1>
-<p>Due to changing climate conditions, macroalgae coverage can impact the transitional phases in coral colonization. Since coral reefs play such an important role in ecosystem services understanding coral reef dynamics is important. An aspect of this is understanding how macroalgae within the systems are being controlled. The herbivorous fishes Chlorurus sordidus, commonly known as parrot fish, and Ctenochaetus striatus, commonly known as striated surgeonfish are reef fish that feed on the algae directly impacting coral reefs.</p>
-<p>This observation data in was collected from the coral reefs of Moʻorea, French Polynesia at research stations LTER 1 and Resilience 2. Focal fish species were identified by a SCUBA diver, an estimated fish length (cm), the depth at the start and end of the observation period, substrate types, and the number of bites taken within 5 minutes was recorded. The data was collected several days in July and August of 2010 between the times of 10:00 and 16:00, an identified period of time which corresponds to peak feeding rates for may herbivorous fishes (Adam, 2019).</p>
-<p>Using this data we want to understand, how herbivore grazing bite counts are influenced by fish size, species, depth, and substrate.</p>
+<p>Due to changing climate conditions, macroalgae coverage can impact the transitional phases in coral colonization. Because coral reefs play such a vital role in ecosystem services, understanding coral reef dynamics is important. One component of this is understanding how the macroalgae within these systems are being controlled. The herbivorous fishes Chlorurus sordidus, commonly known as parrot fish, and Ctenochaetus striatus, commonly known as striated surgeonfish, are essential reef fish species that feed directly on algae, therefore influencing the health of coral reefs.</p>
+<p>This observation data was collected from coral reefs around Moʻorea, French Polynesia, at research stations LTER 1 and Resilience 2. Focal fish species were identified by a SCUBA diver, an estimated fish length (cm), the depth at the start and end of the observation period, substrate types, and the number of bites taken within 5 minutes was recorded. The data was collected over several days in July and August of 2010 between the times of 10:00 and 16:00, an identified period of time which corresponds to peak feeding rates for many herbivorous fishes (Adam, 2019).</p>
+<p>Using this data, we want to understand how herbivore grazing bite counts are influenced by fish size, species, depth, and substrate.</p>
 <section id="data-collection-and-cleaning" class="level2">
 <h2 class="anchored" data-anchor-id="data-collection-and-cleaning">Data Collection and Cleaning</h2>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load in the data.</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"MCR_LTER_HerbBite_Focal_Herb_Bite_Rates_2010_20120521.csv"</span>)) <span class="sc">%&gt;%</span> </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="sc">%&gt;%</span></span>
@@ -188,64 +197,82 @@ window.Quarto = {
 <span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="st">"bare"</span>, <span class="st">"rubble"</span>, <span class="st">"cca"</span>, <span class="st">"sand"</span>, <span class="st">"other"</span>)) <span class="sc">%&gt;%</span> </span>
 <span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">species =</span> <span class="fu">factor</span>(species),</span>
 <span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>         <span class="at">dominant_substrate =</span> <span class="fu">factor</span>(dominant_substrate))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
+<p>The data source provides two datasets that hold data from observations from different dates and locations. After stacking the dataframes, columns that were not required for the analysis were dropped. Some cleaning of our variables was conducted. A <code>mean_depth</code> column was created, which is the average depth during each observation. This was created by taking the average depth between the recorded depth at the start and end of the observation. A <code>dominant_substrate</code> column was also created, which represents the substrate that was bitten the most of all the possible substrates. This was done by detecting which substrate had the highest number of bites for each observed fish.</p>
 </section>
 <section id="data-exploration" class="level2">
 <h2 class="anchored" data-anchor-id="data-exploration">Data Exploration</h2>
+<p>We’ll begin with basic data exploration by plotting fish length (cm) and depth (m) against the total bite count to visualize any potential relationships between these variables and our response variable, total number of bites. We also want to know the shape of the total bite count distribution to help determine what statistical model we should use for our analysis.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot of size vs. total bites, by species.</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> bite_data_clean, <span class="fu">aes</span>(<span class="at">x =</span> size_cm, <span class="at">y =</span> total_bites, <span class="at">color =</span> species)) <span class="sc">+</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Fish Length (cm)"</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Total number of bites"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Body Length (cm)"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Total Number of Bites"</span>,</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Species"</span>) <span class="sc">+</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"dodgerblue"</span>, <span class="st">"violet"</span>)) <span class="sc">+</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"dodgerblue"</span>, <span class="st">"violet"</span>),</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Chlorurus sordidus (Parrotfish)"</span>, </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"Ctenochaetus striatus (Striated surgeonfish)"</span>)) <span class="sc">+</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="analysis_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>Figure 1: Total number of bites as a result of Fish Length (cm), by species, across 164 observed fish.</figcaption>
+<figcaption>Figure 1: Total number of bites as a result of body length (cm), by species, across 164 observed fish. Observations are colored by species. Chlorurus sordidus, commonly known as parrot fish is colored in blue while and Ctenochaetus striatus, commonly known as striated surgeonfish is colored in pink</figcaption>
 </figure>
 </div>
 </div>
 </div>
+<p>Figure 1 depicts differences in body length (cm) and total bite counts based on species. Striated surgeonfish have a wider range of body lengths (cm) compared to Parrotfish and display greater variability in total bite counts. Parrotfish body length (cm) and bite counts appear to be more clustered.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot of mean depth vs. total bites, by species</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> bite_data_clean, <span class="fu">aes</span>(<span class="at">x =</span> mean_depth, <span class="at">y =</span> total_bites, <span class="at">color =</span> species)) <span class="sc">+</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Mean depth (ft)"</span>,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Total number of bites"</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Mean Depth (ft)"</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Total Number of Bites"</span>,</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Species"</span>) <span class="sc">+</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"dodgerblue"</span>, <span class="st">"violet"</span>)) <span class="sc">+</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"dodgerblue"</span>, <span class="st">"violet"</span>),</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Chlorurus sordidus (Parrotfish)"</span>, </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"Ctenochaetus striatus (Striated surgeonfish)"</span>)) <span class="sc">+</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="analysis_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>Figure 2: Total number of bites as a result of Mean Depth (ft), by species, across 164 observed fish.</figcaption>
+<figcaption>Figure 2: Total number of bites as a result of mean depth (ft), by species, across 164 observed fish. Observations are colored by species. Chlorurus sordidus, commonly known as parrotfish is colored in blue while and Ctenochaetus striatus, commonly known as striated surgeonfish is colored in pink</figcaption>
 </figure>
 </div>
 </div>
 </div>
+<p>Figure 2 depicts greater variability and higher total bite counts for Striated surgeonfish. While parrotfish again seem to be more clustered around lower total bite counts.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Total bite count distribution</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> bite_data_clean, <span class="fu">aes</span>(<span class="at">x =</span> total_bites)) <span class="sc">+</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">10</span>,</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Total number of bites"</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Total Number of Bites"</span>,</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Count"</span>) <span class="sc">+</span></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="analysis_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>Figure 3: Distribution of the Total number of bites.</figcaption>
+<figcaption>Figure 3: Distribution of the total number of bites.</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>The data is not normally distributed. The total number of bites is right skewed.</p>
+<p>The data is not normally distributed. The total number of bites is right skewed, which can be indicative of overdispersion.</p>
 </section>
 </section>
 <section id="question" class="level1">
@@ -256,9 +283,10 @@ window.Quarto = {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/moorea_DAG.png" class="img-fluid figure-img"></p>
-<figcaption>Directed Acyclic Graph, representing potential relationships and causal relationships between variables</figcaption>
+<figcaption>Figure 4: Directed Acyclic Graph, representing potential relationships and causal relationships between variables within the analysis</figcaption>
 </figure>
 </div>
+<p>This DAG illustrates our hypothesized causal structure between predictors and the total bite counts. Depth directly affects dominant substrates, species, size, and total bite count. Species affects the total bite count through its effect on the size variable. Depth, dominant substrate, and size all influence total bite count. Observation time directly influences total bite count, but does not affect any other variable.</p>
 <p><strong>Null Hypothesis:</strong> Either size, species, depth, or substrate have no effect on bite count.</p>
 <p><strong>Alternative Hypothesis:</strong> A predictor/predictors have an effect on bite count.</p>
 <p><strong>Hypothesis in Statistical Notation:</strong></p>
@@ -267,21 +295,25 @@ window.Quarto = {
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the mean and variance.</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>var_total_bites <span class="ot">&lt;-</span> <span class="fu">var</span>(bite_data_clean<span class="sc">$</span>total_bites)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>mean_total_bites <span class="ot">&lt;-</span> <span class="fu">mean</span>(bite_data_clean<span class="sc">$</span>total_bites)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Check that variance is greater than the mean.</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (var_total_bites <span class="sc">&gt;</span> mean_total_bites) {</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"After testing, the variance of the `total_bites` is greater than the mean of `total_bites`."</span>)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Variance:"</span>, var_total_bites))</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Mean:"</span>, mean_total_bites))</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>mean_total_bites <span class="ot">&lt;-</span> <span class="fu">mean</span>(bite_data_clean<span class="sc">$</span>total_bites)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check that variance is greater than the mean.</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (var_total_bites <span class="sc">&gt;</span> mean_total_bites) {</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Calculations show that the variance of the `total_bites` is greater than the mean of `total_bites`."</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Variance:"</span>, var_total_bites))</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Mean:"</span>, mean_total_bites))</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "After testing, the variance of the `total_bites` is greater than the mean of `total_bites`."
+<pre><code>[1] "Calculations show that the variance of the `total_bites` is greater than the mean of `total_bites`."
 [1] "Variance: 4127.29773305402"
 [1] "Mean: 119.786585365854"</code></pre>
 </div>
 </div>
-<p><strong>What model?</strong>: Since we are dealing with count data, <code>total_bites</code>, our model options are Poisson Regression or Negative Binomial Regression. Since the Poisson distribution assumes that the mean and variance are equal, which is an assumption that our data does not meet. The mean of <code>total_bites</code> is 4127.2977331 and the variance of <code>total_bites</code> is 4127.2977331 . Since the variance is greater than the mean, the distribution of our count data, <code>total_bites</code> exhibits overdispersion; which is a factor that the Negative Binomial Regression model accounts for.</p>
+<p><strong>What model?</strong>: Since we are dealing with count data, <code>total_bites</code>, our model options are Poisson Regression or Negative Binomial Regression. Since the Poisson distribution assumes that the mean and variance are equal, which is an assumption that our data does not meet. The mean of <code>total_bites</code> is 4127.2977331 and the variance of <code>total_bites</code> is 4127.2977331. Since the variance is greater than the mean, the distribution of our count data, <code>total_bites</code>, exhibits overdispersion, which is a factor that the Negative Binomial Regression model accounts for.</p>
 </section>
 <section id="negative-binomial-regression-model-notation" class="level2">
 <h2 class="anchored" data-anchor-id="negative-binomial-regression-model-notation">Negative Binomial Regression model notation:</h2>
@@ -295,307 +327,449 @@ log(\mu) &amp;= \beta_0 + \beta_1 \text{Size} + \beta_2 \text{Species} + \beta_3
 </section>
 <section id="fit-model-to-simulated-data" class="level1">
 <h1>Fit model to simulated data</h1>
+<p>Before fitting the Negative Binomial Regression model to our real data, we can fit the model to simulated data generated from the coefficients and parameters we define. Using these values, we can generate <strong>data</strong> from these values to see if we are able to successfully backtrack our defined coefficients through fitting the Negative Binomial Regression model. This process ensures that our code to model the Negative Binomial Regression is implemented correctly with the appropriate parameters, and both the link function and the response space are used properly.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set seed for reproducibility purposes.</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Select coefficient values.</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>beta0 <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>beta1 <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">0.3</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>theta <span class="ot">&lt;-</span> <span class="fl">1.5</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate random x values.</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10000</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Find mu in link space.</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>log_mu <span class="ot">&lt;-</span> beta0 <span class="sc">+</span> beta1 <span class="sc">*</span> x1</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Transform the log_mu to response space.</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">exp</span>(log_mu)</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate random y values.</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnbinom</span>(<span class="at">n =</span> <span class="dv">10000</span>, <span class="at">size =</span> theta, <span class="at">mu =</span> mu)</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a tibble of x1 and y.</span></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>sim_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(x1, y)</span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Fite a negative binomial model to the simulated data.</span></span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>negbi <span class="ot">&lt;-</span> <span class="fu">glm.nb</span>(y <span class="sc">~</span> x1, <span class="at">data =</span> sim_data)</span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the summary statistics of the negative binomial model.</span></span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(negbi)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-glm.nb(formula = y ~ x1, data = sim_data, init.theta = 1.487504274, 
-    link = log)
-
-Coefficients:
-             Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)  1.004983   0.010488   95.82   &lt;2e-16 ***
-x1          -0.294818   0.005328  -55.33   &lt;2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-(Dispersion parameter for Negative Binomial(1.4875) family taken to be 1)
-
-    Null deviance: 14546  on 9999  degrees of freedom
-Residual deviance: 11094  on 9998  degrees of freedom
-AIC: 43539
-
-Number of Fisher Scoring iterations: 1
-
-              Theta:  1.4875 
-          Std. Err.:  0.0350 
-
- 2 x log-likelihood:  -43532.6350 </code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set seed for reproducibility purposes.</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Select coefficient values.</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>beta0 <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>beta1 <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">0.3</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>theta <span class="ot">&lt;-</span> <span class="fl">1.5</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate random x values.</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10000</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Find mu in link space.</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>log_mu <span class="ot">&lt;-</span> beta0 <span class="sc">+</span> beta1 <span class="sc">*</span> x1</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Transform the log_mu to response space.</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">exp</span>(log_mu)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate random y values.</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnbinom</span>(<span class="at">n =</span> <span class="dv">10000</span>, <span class="at">size =</span> theta, <span class="at">mu =</span> mu)</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a tibble of x1 and y.</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>sim_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(x1, y)</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a negative binomial model to the simulated data.</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>negbi_sim <span class="ot">&lt;-</span> <span class="fu">glm.nb</span>(y <span class="sc">~</span> x1, <span class="at">data =</span> sim_data)</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>beta0_sim <span class="ot">&lt;-</span> <span class="fu">coef</span>(negbi_sim)[<span class="dv">1</span>]</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>beta1_sim <span class="ot">&lt;-</span> <span class="fu">coef</span>(negbi_sim)[<span class="dv">2</span>]</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>theta_sim <span class="ot">&lt;-</span> negbi_sim<span class="sc">$</span>theta</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a table to compare defined and simulated values</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>sim_table <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Parameter =</span> <span class="fu">c</span>(<span class="st">"&amp;beta;&lt;sub&gt;0&lt;/sub&gt;"</span>, <span class="st">"&amp;beta;&lt;sub&gt;1&lt;/sub&gt;"</span>, <span class="st">"&amp;theta;"</span>),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Set_Value =</span> <span class="fu">c</span>(beta0, beta1, theta),</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Simulated_Value =</span> <span class="fu">round</span>(<span class="fu">c</span>(beta0_sim, beta1_sim, theta_sim), <span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">"Parameter"</span> <span class="ot">=</span> Parameter,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>         <span class="st">"Defined Value"</span> <span class="ot">=</span> Set_Value,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>         <span class="st">"Simulated Value"</span> <span class="ot">=</span> Simulated_Value) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">escape =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Table 1: Comparing defined parameters to simulated paramters"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_paper</span>(<span class="at">full_width=</span><span class="cn">TRUE</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>sim_table</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<table class="lightable-paper caption-top table table-sm table-striped small">
+<caption>Table 1: Comparing defined parameters to simulated paramters</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Parameter</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Defined Value</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Simulated Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">β<sub>0</sub></td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">1.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">β<sub>1</sub></td>
+<td style="text-align: right;">-0.3</td>
+<td style="text-align: right;">-0.29</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">θ</td>
+<td style="text-align: right;">1.5</td>
+<td style="text-align: right;">1.49</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
+<p>After fitting our simulated data, we can see that the coefficients are very similar to the values that we defined. This means that our process for implementing a Negative Binomial Regression model on data is correct, and we can therefore apply this to our actual bite count data from Moʻorea.</p>
 </section>
-<section id="fit-model-to-real-data" class="level1">
-<h1>Fit model to real data</h1>
+<section id="fitting-the-model-to-real-data" class="level1">
+<h1>Fitting the Model to Real Data</h1>
 <p>We’ll use and additive Negative Binomial Regression model. Our predictor variables are <code>size_cm</code>, <code>species</code>, <code>mean_depth</code>, <code>dominant_substrate</code>, and an offset of <code>seconds_observed</code>.</p>
-<p>Since the time observed varied between 5 minutes, we want to use an offset within our model since larger or smaller data could be collected based on the time spent measuring total bite counts.</p>
+<p><strong>What is an offset?:</strong> An offset variable represents the size, exposure or measurement time, or population size of each observational unit (Parry, 2018). Within this study the offset variable is <code>seconds_observed</code>, where the coefficient for <code>seconds_observed</code> is constrained to be 1, meaning that the model will represent rates rather than counts.</p>
+<p><strong>Why use an offset?:</strong> Observations were conducted within a 300-second window, resulting in some variability within the amount of time spent observing individual fishes, as seen in Figure 5. When using an offset, the assumption is made that doubling the unit size (seconds observed) will lead to a doubling of the count outcome. In the case of bite counts, more count data could be collected in a larger time window (300 seconds) compared to a smaller one (200 seconds). In summary, the offset ensures that genuinely high bite count occurrence is distinguished from high bite counts that result from larger time windows.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>full_model <span class="ot">&lt;-</span> <span class="fu">glm.nb</span>(total_bites <span class="sc">~</span> size_cm <span class="sc">+</span> species <span class="sc">+</span> mean_depth <span class="sc">+</span> dominant_substrate <span class="sc">+</span> <span class="fu">offset</span>(<span class="fu">log</span>(seconds_observed)), <span class="at">data =</span> bite_data_clean)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(full_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-glm.nb(formula = total_bites ~ size_cm + species + mean_depth + 
-    dominant_substrate + offset(log(seconds_observed)), data = bite_data_clean, 
-    init.theta = 3.783589259, link = log)
-
-Coefficients:
-                              Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)                  -0.722426   0.422942  -1.708 0.087618 .  
-size_cm                      -0.051990   0.021522  -2.416 0.015707 *  
-speciesCtenochaetus striatus  0.094791   0.118972   0.797 0.425593    
-mean_depth                    0.015208   0.004421   3.440 0.000581 ***
-dominant_substraterubble      0.059480   0.131858   0.451 0.651925    
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-(Dispersion parameter for Negative Binomial(3.7836) family taken to be 1)
-
-    Null deviance: 210.06  on 163  degrees of freedom
-Residual deviance: 172.51  on 159  degrees of freedom
-AIC: 1794.6
-
-Number of Fisher Scoring iterations: 1
-
-              Theta:  3.784 
-          Std. Err.:  0.421 
-
- 2 x log-likelihood:  -1782.559 </code></pre>
-</div>
-</div>
-<section id="coefficient-interpretations" class="level4">
-<h4 class="anchored" data-anchor-id="coefficient-interpretations">Coefficient Interpretations:</h4>
-<p><span class="math inline">\(\beta_1\)</span> representing the size effect is a significant as for every centimeter increase in fish length, the expected bite count decreases by about 0.05199, when holding other predictor variables constant. <span class="math inline">\(\beta_2\)</span> representing the species effect, with parrot fish being our reference level, is not significant. Which indicates that the expected bite count between the two species are statistically the same, when holding other predictor variables constant. <span class="math inline">\(\beta_3\)</span> representing depth effect is very significant predictor as our p-value is extremely low, meaning that the probability of the observed results occurring by random change is 0.058%. Therefore, for every meter increase in depth, expected bite count increases by about 0.015208. <span class="math inline">\(\beta_4\)</span> representing the substrate effect, with bare being the reference level, is not significant. This means that substrate does not statistically influence expected bite counts.</p>
-<p>In summary, bite count decreases when fish length increases, suggesting that larger fish take fewer bites, which can be explained by the idea of larger fish taking less bites, due to taking bigger bites. Bite counts also significantly increase as depth increases. This can indicate more food availability at different depth levels.</p>
-</section>
-</section>
-<section id="generating-predictions" class="level1">
-<h1>Generating Predictions</h1>
-<p>Next I’ll generate expected bite count predictions. The predictions will be generated varying the fish lengths (cm), <code>size_cm</code>, and holding all other variables constant.</p>
-<p>The expected bite count predictions were generated in response space, while the confidence interval for the expected bite count predictions were generated in link space.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create grid for generated predictions.</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>bite_pred_grid <span class="ot">&lt;-</span> <span class="fu">expand_grid</span>(</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">size_cm =</span> <span class="fu">seq</span>(<span class="dv">12</span>, <span class="dv">25</span>, <span class="at">by =</span> <span class="fl">0.5</span>),</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">mean_depth =</span> <span class="fu">mean</span>(bite_data_clean<span class="sc">$</span>mean_depth),</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">species =</span> <span class="fu">levels</span>(bite_data_clean<span class="sc">$</span>species),</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">seconds_observed =</span> <span class="fu">mean</span>(bite_data_clean<span class="sc">$</span>seconds_observed)) <span class="sc">%&gt;%</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">species =</span> <span class="fu">factor</span>(species, <span class="at">levels =</span> <span class="fu">levels</span>(bite_data_clean<span class="sc">$</span>species)),</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">dominant_substrate =</span> <span class="fu">factor</span>(<span class="st">"bare"</span>, <span class="at">levels =</span> <span class="fu">levels</span>(bite_data_clean<span class="sc">$</span>dominant_substrate)))</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate predictions.</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>bite_pred_grid<span class="sc">$</span>predicted_bites <span class="ot">&lt;-</span> <span class="fu">predict</span>(full_model,</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">newdata =</span> bite_pred_grid,</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">type =</span> <span class="st">"response"</span>)</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a standard error for predictions.</span></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>bite_pred_se <span class="ot">&lt;-</span> <span class="fu">predict</span>(<span class="at">object =</span> full_model,</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>                        <span class="at">newdata =</span> bite_pred_grid,</span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>                        <span class="at">type =</span> <span class="st">"link"</span>, <span class="co"># stay in link space!</span></span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>                        <span class="at">se.fit =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Go from link space to response space</span></span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>linkinv <span class="ot">&lt;-</span> <span class="fu">family</span>(full_model)<span class="sc">$</span>linkinv</span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>bite_pred_grid <span class="ot">&lt;-</span> bite_pred_grid <span class="sc">%&gt;%</span> </span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># get log(mu)</span></span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">log_mu =</span> bite_pred_se<span class="sc">$</span>fit,</span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 95% CI in link space</span></span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">log_mu_se =</span> bite_pred_se<span class="sc">$</span>se.fit,</span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">log_mu_lwr =</span> <span class="fu">qnorm</span>(<span class="fl">0.025</span>, <span class="at">mean =</span> log_mu, <span class="at">sd =</span> log_mu_se),</span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">log_mu_upr =</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>, <span class="at">mean =</span> log_mu, <span class="at">sd =</span> log_mu_se),</span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># undo the link function using linkinv</span></span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">mu =</span> <span class="fu">linkinv</span>(log_mu), </span>
-<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">mu_lwr =</span> <span class="fu">linkinv</span>(log_mu_lwr),</span>
-<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">mu_upr =</span> <span class="fu">linkinv</span>(log_mu_upr)</span>
-<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>We’ll then plot the expected bite count predictions along with the observed values to see how well our expected predictions from the model, fit the data.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the observed variables and </span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bite_pred_grid, <span class="fu">aes</span>(size_cm, predicted_bites, <span class="at">color =</span> species)) <span class="sc">+</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mu_lwr, <span class="at">ymax =</span> mu_upr), <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">data =</span> bite_data_clean, <span class="fu">aes</span>(<span class="at">x=</span> size_cm, <span class="at">y =</span> total_bites)) <span class="sc">+</span> </span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"dodgerblue"</span>, <span class="st">"violet"</span>)) <span class="sc">+</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>species, <span class="at">scales =</span> <span class="st">"free_x"</span>) <span class="sc">+</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Length of Fish (cm)"</span>,</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Total bite counts"</span>,</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Species"</span>) <span class="sc">+</span> </span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Seconds observed distribution.</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> bite_data_clean, <span class="fu">aes</span>(<span class="at">x =</span> seconds_observed)) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">20</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Seconds Observed"</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Count of Observations"</span>) <span class="sc">+</span> </span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="analysis_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>Figure 4: Observed data fit to the expected bite count predictions.</figcaption>
+<figcaption>Figure 5: Distribution of the seconds observed for each observation.</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<section id="making-predictions-with-interactions-and-varying-mean-depth." class="level2">
-<h2 class="anchored" data-anchor-id="making-predictions-with-interactions-and-varying-mean-depth.">Making Predictions, with interactions and varying mean depth.</h2>
+<section id="fitting-an-additive-negative-binomial-regression-model" class="level2">
+<h2 class="anchored" data-anchor-id="fitting-an-additive-negative-binomial-regression-model">Fitting an Additive Negative Binomial Regression Model</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>final_model <span class="ot">&lt;-</span> <span class="fu">glm.nb</span>(total_bites <span class="sc">~</span> size_cm <span class="sc">+</span> species<span class="sc">*</span>mean_depth <span class="sc">+</span> dominant_substrate <span class="sc">+</span> <span class="fu">offset</span>(<span class="fu">log</span>(seconds_observed)), <span class="at">data =</span> bite_data_clean)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(final_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-glm.nb(formula = total_bites ~ size_cm + species * mean_depth + 
-    dominant_substrate + offset(log(seconds_observed)), data = bite_data_clean, 
-    init.theta = 3.89959059, link = log)
-
-Coefficients:
-                                         Estimate Std. Error z value Pr(&gt;|z|)
-(Intercept)                             -0.133042   0.478427  -0.278  0.78095
-size_cm                                 -0.064755   0.021578  -3.001  0.00269
-speciesCtenochaetus striatus            -0.686981   0.358356  -1.917  0.05523
-mean_depth                               0.006129   0.006004   1.021  0.30731
-dominant_substraterubble                 0.054679   0.130032   0.421  0.67412
-speciesCtenochaetus striatus:mean_depth  0.018320   0.008098   2.262  0.02369
-                                          
-(Intercept)                               
-size_cm                                 **
-speciesCtenochaetus striatus            . 
-mean_depth                                
-dominant_substraterubble                  
-speciesCtenochaetus striatus:mean_depth * 
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-(Dispersion parameter for Negative Binomial(3.8996) family taken to be 1)
-
-    Null deviance: 216.18  on 163  degrees of freedom
-Residual deviance: 172.41  on 158  degrees of freedom
-AIC: 1791.5
-
-Number of Fisher Scoring iterations: 1
-
-              Theta:  3.900 
-          Std. Err.:  0.436 
-
- 2 x log-likelihood:  -1777.524 </code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fitting a additive Negative Binomial Regression model.</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>full_model <span class="ot">&lt;-</span> <span class="fu">glm.nb</span>(total_bites <span class="sc">~</span> size_cm <span class="sc">+</span> species <span class="sc">+</span> mean_depth <span class="sc">+</span> dominant_substrate <span class="sc">+</span> <span class="fu">offset</span>(<span class="fu">log</span>(seconds_observed)), <span class="at">data =</span> bite_data_clean)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a table of the coefficients.</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>full_model_table <span class="ot">&lt;-</span> broom<span class="sc">::</span><span class="fu">tidy</span>(full_model) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">caption =</span> <span class="st">"Table 2: Coefficient Estimates of the Full Additive Model"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_paper</span>(<span class="at">full_width=</span><span class="cn">TRUE</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>full_model_table</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<table class="lightable-paper caption-top table table-sm table-striped small">
+<caption>Table 2: Coefficient Estimates of the Full Additive Model</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">term</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">estimate</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">std.error</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">statistic</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">-0.7224262</td>
+<td style="text-align: right;">0.4229417</td>
+<td style="text-align: right;">-1.7080987</td>
+<td style="text-align: right;">0.0876180</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">size_cm</td>
+<td style="text-align: right;">-0.0519902</td>
+<td style="text-align: right;">0.0215223</td>
+<td style="text-align: right;">-2.4156482</td>
+<td style="text-align: right;">0.0157072</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">speciesCtenochaetus striatus</td>
+<td style="text-align: right;">0.0947912</td>
+<td style="text-align: right;">0.1189715</td>
+<td style="text-align: right;">0.7967551</td>
+<td style="text-align: right;">0.4255933</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">mean_depth</td>
+<td style="text-align: right;">0.0152081</td>
+<td style="text-align: right;">0.0044205</td>
+<td style="text-align: right;">3.4403547</td>
+<td style="text-align: right;">0.0005810</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">dominant_substraterubble</td>
+<td style="text-align: right;">0.0594797</td>
+<td style="text-align: right;">0.1318579</td>
+<td style="text-align: right;">0.4510897</td>
+<td style="text-align: right;">0.6519249</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<section id="coefficient-interpretations" class="level4">
+<h4 class="anchored" data-anchor-id="coefficient-interpretations">Coefficient Interpretations:</h4>
+<p>The model summary tells us:</p>
+<ul>
+<li><p>Size has a negative and statistically significant effect, indicating that when other variables are held constant, larger fish tend to have lower expected bite rates; when holding other predictor variables constant.</p></li>
+<li><p>The species effect, with parrot fish being our reference level, is not statistically significant, indicating that the expected bite count between the two species are statistically the same, when holding other predictor variables constant.</p></li>
+<li><p>Depth is a statistically significant predictor as our p-value is less than 0.001. Therefore, depth has a statistically significant positive effect, meaning that at greater depths we expect higher bite rates, when other variables are held constant.</p></li>
+<li><p>The substrate effect, with bare being the reference level, is not significant. This means that substrate does not statistically influence expected bite counts.</p></li>
+</ul>
+<p>In summary, bite count decreases when fish length increases, suggesting that larger fish take fewer bites, which can be explained by the idea of larger fish taking less bites, due to taking bigger bites. Bite counts also significantly increase as depth increases. This can indicate more food availability at different depth levels.</p>
+</section>
+</section>
+<section id="generating-predictions-for-an-additive-negative-binomial-regresson-model" class="level2">
+<h2 class="anchored" data-anchor-id="generating-predictions-for-an-additive-negative-binomial-regresson-model">Generating Predictions for an Additive Negative Binomial Regresson Model</h2>
+<p>Next I’ll generate expected bite count predictions. The predictions will be generated varying the body lengths (cm), <code>size_cm</code>, and holding all other variables constant.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create grid for generated predictions.</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>bite_pred_grid <span class="ot">&lt;-</span> <span class="fu">expand_grid</span>(</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">size_cm =</span> <span class="fu">seq</span>(<span class="dv">12</span>, <span class="dv">25</span>, <span class="at">by =</span> <span class="fl">0.5</span>),</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">mean_depth =</span> <span class="fu">mean</span>(bite_data_clean<span class="sc">$</span>mean_depth),</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">species =</span> <span class="fu">levels</span>(bite_data_clean<span class="sc">$</span>species),</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">seconds_observed =</span> <span class="fu">mean</span>(bite_data_clean<span class="sc">$</span>seconds_observed)) <span class="sc">%&gt;%</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">species =</span> <span class="fu">factor</span>(species, <span class="at">levels =</span> <span class="fu">levels</span>(bite_data_clean<span class="sc">$</span>species)),</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">dominant_substrate =</span> <span class="fu">factor</span>(<span class="st">"bare"</span>, <span class="at">levels =</span> <span class="fu">levels</span>(bite_data_clean<span class="sc">$</span>dominant_substrate)))</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate predictions.</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>bite_pred_grid<span class="sc">$</span>predicted_bites <span class="ot">&lt;-</span> <span class="fu">predict</span>(full_model,</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">newdata =</span> bite_pred_grid,</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">type =</span> <span class="st">"response"</span>)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a standard error for predictions.</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>bite_pred_se <span class="ot">&lt;-</span> <span class="fu">predict</span>(<span class="at">object =</span> full_model,</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>                        <span class="at">newdata =</span> bite_pred_grid,</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>                        <span class="at">type =</span> <span class="st">"link"</span>, </span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>                        <span class="at">se.fit =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Go from link space to response space</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>linkinv <span class="ot">&lt;-</span> <span class="fu">family</span>(full_model)<span class="sc">$</span>linkinv</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>bite_pred_grid <span class="ot">&lt;-</span> bite_pred_grid <span class="sc">%&gt;%</span> </span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># get log(mu)</span></span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">log_mu =</span> bite_pred_se<span class="sc">$</span>fit,</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 95% CI in link space</span></span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">log_mu_se =</span> bite_pred_se<span class="sc">$</span>se.fit,</span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">log_mu_lwr =</span> <span class="fu">qnorm</span>(<span class="fl">0.025</span>, <span class="at">mean =</span> log_mu, <span class="at">sd =</span> log_mu_se),</span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">log_mu_upr =</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>, <span class="at">mean =</span> log_mu, <span class="at">sd =</span> log_mu_se),</span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># undo the link function using linkinv</span></span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">mu =</span> <span class="fu">linkinv</span>(log_mu), </span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">mu_lwr =</span> <span class="fu">linkinv</span>(log_mu_lwr),</span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">mu_upr =</span> <span class="fu">linkinv</span>(log_mu_upr)</span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The expected bite count predictions were generated in response space, while the 95% confidence interval for the expected bite count predictions were generated in link space.</p>
+<p>We’ll then plot the expected bite count predictions along with the observed values to see how well our predicted expected values generated from the additive model, fit the data.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the observed variables and </span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bite_pred_grid, <span class="fu">aes</span>(size_cm, predicted_bites, <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mu_lwr, <span class="at">ymax =</span> mu_upr), <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">data =</span> bite_data_clean, <span class="fu">aes</span>(<span class="at">x=</span> size_cm, <span class="at">y =</span> total_bites)) <span class="sc">+</span> </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"dodgerblue"</span>, <span class="st">"violet"</span>),</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Chlorurus sordidus (Parrotfish)"</span>, </span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"Ctenochaetus striatus (Striated surgeonfish)"</span>)) <span class="sc">+</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>species, <span class="at">scales =</span> <span class="st">"free_x"</span>) <span class="sc">+</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Body Length (cm)"</span>,</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Total Bite Counts"</span>,</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Species"</span>) <span class="sc">+</span> </span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Figure 6: Observed data fit to the expected bite count predictions generated from the additive Negative Binomial Regression model.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The figure displays the relationship between the length of the fish (cm) and total bite counts for parrotfish and striated surgeonfish, overlaid with predicted expected bite counts generated from the additive Negative Binomial Regression model. The 95% confidence interval is represented as the shaded grey region.</p>
+<p><strong>Connecting Coefficient Estimates to Predicted Bite Rates:</strong></p>
+<p>Recall our size effect coefficient interpretation: “Size has <strong>a negative and statistically significant effect</strong>, indicating that when other variables are held constant, larger fish tend to have lower expected bite rates; when holding other predictor variables constant.”</p>
+<p>When generating predictions of expected bite counts, we <strong>varied our size variable</strong> and <strong>held all the other predictor variables constant</strong>. By doing so, we should be able to visualize the size effect within our predicted expected values.</p>
+<p>For both parrotfish and striated surgeonfish, the predicted expected bite count slope curves downward as size increases. Indicating that larger fish tend to have lower bite rates, which attests to the statistically significant negative coefficient for the size effect in the model.</p>
+</section>
+<section id="fit-an-additive-interactive-negative-binomial-regression-model" class="level2">
+<h2 class="anchored" data-anchor-id="fit-an-additive-interactive-negative-binomial-regression-model">Fit an Additive-Interactive Negative Binomial Regression Model</h2>
+<p>Since depth showed a statistically significant positive effect in the additive model above, I wanted to test whether this effect was consistent between the species. A species x depth interaction within the Negative Binomial Regression model will detect if the relationship between depth and bite rate differs among the two species.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fitting a additive Negative Binomial Regression model.</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>final_model <span class="ot">&lt;-</span> <span class="fu">glm.nb</span>(total_bites <span class="sc">~</span> size_cm <span class="sc">+</span> species<span class="sc">*</span>mean_depth <span class="sc">+</span> dominant_substrate <span class="sc">+</span> <span class="fu">offset</span>(<span class="fu">log</span>(seconds_observed)), <span class="at">data =</span> bite_data_clean)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a coefficient summary table.</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>final_model_table <span class="ot">&lt;-</span> broom<span class="sc">::</span><span class="fu">tidy</span>(final_model) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">caption =</span> <span class="st">"Table 3: Coefficient Estimates of the Full Additive-Interactive Model"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_paper</span>(<span class="at">full_width=</span><span class="cn">TRUE</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>final_model_table</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<table class="lightable-paper caption-top table table-sm table-striped small">
+<caption>Table 3: Coefficient Estimates of the Full Additive-Interactive Model</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">term</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">estimate</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">std.error</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">statistic</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">-0.1330416</td>
+<td style="text-align: right;">0.4784270</td>
+<td style="text-align: right;">-0.2780812</td>
+<td style="text-align: right;">0.7809500</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">size_cm</td>
+<td style="text-align: right;">-0.0647547</td>
+<td style="text-align: right;">0.0215775</td>
+<td style="text-align: right;">-3.0010257</td>
+<td style="text-align: right;">0.0026907</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">speciesCtenochaetus striatus</td>
+<td style="text-align: right;">-0.6869812</td>
+<td style="text-align: right;">0.3583561</td>
+<td style="text-align: right;">-1.9170349</td>
+<td style="text-align: right;">0.0552335</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">mean_depth</td>
+<td style="text-align: right;">0.0061290</td>
+<td style="text-align: right;">0.0060036</td>
+<td style="text-align: right;">1.0208837</td>
+<td style="text-align: right;">0.3073096</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">dominant_substraterubble</td>
+<td style="text-align: right;">0.0546794</td>
+<td style="text-align: right;">0.1300324</td>
+<td style="text-align: right;">0.4205060</td>
+<td style="text-align: right;">0.6741159</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">speciesCtenochaetus striatus:mean_depth</td>
+<td style="text-align: right;">0.0183200</td>
+<td style="text-align: right;">0.0080984</td>
+<td style="text-align: right;">2.2621793</td>
+<td style="text-align: right;">0.0236863</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <section id="coefficient-interpretations-1" class="level4">
 <h4 class="anchored" data-anchor-id="coefficient-interpretations-1">Coefficient Interpretations:</h4>
-<p><span class="math inline">\(\beta_1\)</span> representing the size effect is again significant, where for every centimeter increase in fish length, the expected bite count decreases by 0.0648. <span class="math inline">\(\beta_2\)</span> representing the species effect. This coefficient specifically is the difference in expected bite counts between the species, when the depth is 0. Therefore, when depth is 0, we’d expect the bite count for parrot fish to be about 0.687 counts lower than striated surgeonfish. <span class="math inline">\(\beta_3\)</span> representing the depth effect on striated surgeonfish, is not significant. Meaning that depth does not affect the expected bite count of striated surgeonfish. <span class="math inline">\(\beta_4\)</span> representing the dominant substrate effect is again not significant. Therefore, when holding all other variables constant, substrate does not affect the expected bite count. <span class="math inline">\(\beta_5\)</span> representing the interaction between species and depth effect, is also the indicator of depth effect on parrot fish in relation to striated surgeonfish. Using the sum of estimate of <span class="math inline">\(\beta_3\)</span> and <span class="math inline">\(\beta_5\)</span> we can calculate the slope of depth’s effect on parrot fish expected bite counts. This means that for every meter increase in depth, expected bite counts for the parrot fish will increase by 0.02445.</p>
-<p>In summary, this new additive interaction Negative Binomial Regression model indicates that again larger fish take less bites. Within this new model an important effect is that at deeper depths, the bite counts of parrot fish increase. However, the model does not indicate a similar significant pattern for striated surgeonfish. Therefore, the model reveals different behaviors and patterns within species related to herbivory grazing upon coral reefs.</p>
+<ul>
+<li><p>Size again has a statistically significant negative effect, indicating that when other variables are held constant, larger fish tend to have lower expected bite rates.</p></li>
+<li><p>The species effect represents the difference in expected bite counts between the species, when the depth is 0. Therefore, when depth is 0, we’d expect striated surgeonfish to have lower expected bite rated than parrotfish. However, this effect could be considered not statistically significant as it’s p-value is 0.055.</p></li>
+<li><p>The depth effect on parrot fish, is not significant. Meaning that depth does not affect the expected bite count of parrotfish.</p></li>
+<li><p>The dominant substrate effect is again not significant. Therefore, when holding all other variables constant, substrate does not affect the expected bite count.</p></li>
+<li><p>The interaction between species and depth effect, represents the differing bite rates between parrotfish and striated surgeonfish because of depth effect. The interaction has a positive, statistically significant effect, indicating that striated surgeon fish experience a stronger increase in expected bite rates with increasing depth, compared to parrotfish (reference species).</p></li>
+</ul>
+<p>In summary, this new additive-interaction Negative Binomial Regression model indicates that again larger fish take less bites. Within this new model an important effect is that at deeper depths, there is a stronger increase in the expected bite counts of striated surgeon fish compared to parrotfish. Therefore, the model reveals different behaviors and patterns within species related to herbivory grazing upon coral reefs.</p>
 </section>
 </section>
-</section>
-<section id="generate-predictions" class="level1">
-<h1>Generate Predictions</h1>
+<section id="generate-predictions-for-an-additive-interactive-negative-binomial-regresson-model" class="level2">
+<h2 class="anchored" data-anchor-id="generate-predictions-for-an-additive-interactive-negative-binomial-regresson-model">Generate Predictions for an Additive-Interactive Negative Binomial Regresson Model</h2>
 <p>Finally, we’ll generate expected bite count predictions from the new additive interactive Negative Binomial Regression model. The predictions will be generated varying the depth, <code>mean_depth</code>, and holding all other variables constant.</p>
 <p>The expected bite count predictions will be generated in response space, while the confidence interval for the expected bite count predictions will be generated in link space.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the mean size, by species.</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>species_means <span class="ot">&lt;-</span> bite_data_clean <span class="sc">%&gt;%</span> </span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_size =</span> <span class="fu">mean</span>(size_cm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create grid for generated predictions.</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>bite_pred_grid2 <span class="ot">&lt;-</span> <span class="fu">expand_grid</span>(</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">mean_depth =</span> <span class="fu">seq</span>(<span class="dv">25</span>, <span class="dv">61</span>, <span class="at">by =</span> <span class="fl">0.5</span>),</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">species =</span> <span class="fu">levels</span>(bite_data_clean<span class="sc">$</span>species),</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">seconds_observed =</span> <span class="fu">mean</span>(bite_data_clean<span class="sc">$</span>seconds_observed)) <span class="sc">%&gt;%</span></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(species_means, <span class="at">by =</span> <span class="st">"species"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">size_cm =</span> mean_size,</span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">dominant_substrate =</span> <span class="fu">factor</span>(<span class="st">"bare"</span>, <span class="at">levels =</span> <span class="fu">levels</span>(bite_data_clean<span class="sc">$</span>dominant_substrate)),</span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">species =</span> <span class="fu">factor</span>(species, <span class="at">levels =</span> <span class="fu">levels</span>(bite_data_clean<span class="sc">$</span>species)))</span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate predictions.</span></span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>bite_pred_grid2<span class="sc">$</span>predicted_bites <span class="ot">&lt;-</span> <span class="fu">predict</span>(final_model,</span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">newdata =</span> bite_pred_grid2,</span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">type =</span> <span class="st">"response"</span>)</span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a standard error for predictions.</span></span>
-<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>bite_pred_se2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(<span class="at">object =</span> final_model,</span>
-<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>                        <span class="at">newdata =</span> bite_pred_grid2,</span>
-<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>                        <span class="at">type =</span> <span class="st">"link"</span>, <span class="co"># stay in link space!</span></span>
-<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>                        <span class="at">se.fit =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Go from link space to response space</span></span>
-<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>linkinv <span class="ot">&lt;-</span> <span class="fu">family</span>(final_model)<span class="sc">$</span>linkinv</span>
-<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>bite_pred_grid2 <span class="ot">&lt;-</span> bite_pred_grid2 <span class="sc">%&gt;%</span> </span>
-<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># get log(mu)</span></span>
-<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">log_mu =</span> bite_pred_se2<span class="sc">$</span>fit,</span>
-<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 95% CI in link space</span></span>
-<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">log_mu_se =</span> bite_pred_se2<span class="sc">$</span>se.fit,</span>
-<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">log_mu_lwr =</span> <span class="fu">qnorm</span>(<span class="fl">0.025</span>, <span class="at">mean =</span> log_mu, <span class="at">sd =</span> log_mu_se),</span>
-<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">log_mu_upr =</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>, <span class="at">mean =</span> log_mu, <span class="at">sd =</span> log_mu_se),</span>
-<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a>    <span class="co"># undo the link function using linkinv</span></span>
-<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">mu =</span> <span class="fu">linkinv</span>(log_mu), </span>
-<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">mu_lwr =</span> <span class="fu">linkinv</span>(log_mu_lwr),</span>
-<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">mu_upr =</span> <span class="fu">linkinv</span>(log_mu_upr)</span>
-<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the mean size, by species.</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>species_means <span class="ot">&lt;-</span> bite_data_clean <span class="sc">%&gt;%</span> </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_size =</span> <span class="fu">mean</span>(size_cm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create grid for generated predictions.</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>bite_pred_grid2 <span class="ot">&lt;-</span> <span class="fu">expand_grid</span>(</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">mean_depth =</span> <span class="fu">seq</span>(<span class="dv">25</span>, <span class="dv">61</span>, <span class="at">by =</span> <span class="fl">0.5</span>),</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">species =</span> <span class="fu">levels</span>(bite_data_clean<span class="sc">$</span>species),</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">seconds_observed =</span> <span class="fu">mean</span>(bite_data_clean<span class="sc">$</span>seconds_observed)) <span class="sc">%&gt;%</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(species_means, <span class="at">by =</span> <span class="st">"species"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">size_cm =</span> mean_size,</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">dominant_substrate =</span> <span class="fu">factor</span>(<span class="st">"bare"</span>, <span class="at">levels =</span> <span class="fu">levels</span>(bite_data_clean<span class="sc">$</span>dominant_substrate)),</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">species =</span> <span class="fu">factor</span>(species, <span class="at">levels =</span> <span class="fu">levels</span>(bite_data_clean<span class="sc">$</span>species)))</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate predictions.</span></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>bite_pred_grid2<span class="sc">$</span>predicted_bites <span class="ot">&lt;-</span> <span class="fu">predict</span>(final_model,</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">newdata =</span> bite_pred_grid2,</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">type =</span> <span class="st">"response"</span>)</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a standard error for predictions.</span></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>bite_pred_se2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(<span class="at">object =</span> final_model,</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>                        <span class="at">newdata =</span> bite_pred_grid2,</span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>                        <span class="at">type =</span> <span class="st">"link"</span>, </span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>                        <span class="at">se.fit =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Go from link space to response space</span></span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>linkinv <span class="ot">&lt;-</span> <span class="fu">family</span>(final_model)<span class="sc">$</span>linkinv</span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>bite_pred_grid2 <span class="ot">&lt;-</span> bite_pred_grid2 <span class="sc">%&gt;%</span> </span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># get log(mu)</span></span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">log_mu =</span> bite_pred_se2<span class="sc">$</span>fit,</span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 95% CI in link space</span></span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">log_mu_se =</span> bite_pred_se2<span class="sc">$</span>se.fit,</span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">log_mu_lwr =</span> <span class="fu">qnorm</span>(<span class="fl">0.025</span>, <span class="at">mean =</span> log_mu, <span class="at">sd =</span> log_mu_se),</span>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">log_mu_upr =</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>, <span class="at">mean =</span> log_mu, <span class="at">sd =</span> log_mu_se),</span>
+<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a>    <span class="co"># undo the link function using linkinv</span></span>
+<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">mu =</span> <span class="fu">linkinv</span>(log_mu), </span>
+<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">mu_lwr =</span> <span class="fu">linkinv</span>(log_mu_lwr),</span>
+<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">mu_upr =</span> <span class="fu">linkinv</span>(log_mu_upr)</span>
+<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<p>The expected bite count predictions were, again, generated in response space, while the 95% confidence interval for the expected bite count predictions were generated in link space.</p>
+<p>We’ll then plot the expected bite count predictions along with the observed values to see how well our predicted expected values generated from the additive-interactive model, fit the data.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the observed variables and </span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bite_pred_grid2, <span class="fu">aes</span>(mean_depth, predicted_bites, <span class="at">color =</span> species)) <span class="sc">+</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mu_lwr, <span class="at">ymax =</span> mu_upr), <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">data =</span> bite_data_clean, <span class="fu">aes</span>(<span class="at">x=</span> mean_depth, <span class="at">y =</span> total_bites)) <span class="sc">+</span> </span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"dodgerblue"</span>, <span class="st">"violet"</span>)) <span class="sc">+</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>species, <span class="at">scales =</span> <span class="st">"free_x"</span>) <span class="sc">+</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Depth (m)"</span>,</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Total bite counts"</span>,</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Species"</span>) <span class="sc">+</span> <span class="do">## Would this be the number of bites or the predicted number of bites</span></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the observed variables and </span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bite_pred_grid2, <span class="fu">aes</span>(mean_depth, predicted_bites, <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mu_lwr, <span class="at">ymax =</span> mu_upr), <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">data =</span> bite_data_clean, <span class="fu">aes</span>(<span class="at">x=</span> mean_depth, <span class="at">y =</span> total_bites)) <span class="sc">+</span> </span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"dodgerblue"</span>, <span class="st">"violet"</span>),</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Chlorurus sordidus (Parrotfish)"</span>, </span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"Ctenochaetus striatus (Striated surgeonfish)"</span>)) <span class="sc">+</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>species, <span class="at">scales =</span> <span class="st">"free_x"</span>) <span class="sc">+</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Depth (m)"</span>,</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Total Bite Counts"</span>,</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Species"</span>) <span class="sc">+</span> </span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>Figure 5: Observed data fit to the expected bite count predictions. Predictions generated from varying depth and keeping all other variables constant.</figcaption>
+<p><img src="analysis_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Figure 7: Observed data fit to the expected bite count predictions. Predictions generated from varying depth and keeping all other variables constant and using the additive-interactive Negative Binomial Regression model.</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<section id="conclusions" class="level3">
-<h3 class="anchored" data-anchor-id="conclusions">Conclusions:</h3>
-<p>From this analysis we found that size has a significant effect on total bite counts, where larger fish take less bites. Another significant finding was that there was a significant effect of the interaction of species and depth. Which indicated that the there are different feeding behaviors of the species at different depths. After collecting these results further research can be done to understand the behaviors of the species at different depths, which would include collecting other variables that could have an effect on bite counts. Such as different environmental factors such as temperature, pH levels, presence of other species, etc. This analysis could provide a baseline for stakeholders when it comes to conservation decision making. For example, by using this analysis and with further research size limits can be created or updated to protect the size range of species that feed the most on the coral reefs.</p>
+<p>The figure displays the relationship between the depth (m) and total bite counts for parrotfish and striated surgeonfish, overlaid with predicted expected bite counts generated from the additive-interactive Negative Binomial Regression model. The 95% confidence interval is represented as the shaded grey region.</p>
+<p><strong>Connecting Coefficient Estimates to Predicted Bite Rates:</strong></p>
+<p>Recall our species x depth interaction effect coefficient interpretation: “The interaction between species and depth effect represents the differing bite rates between parrotfish and striated surgeonfish because of the depth effect. The interaction has a <strong>positive, statistically significant effect</strong>, indicating that <strong>striated surgeon fish experience a stronger increase in expected bite rates with increasing depth, compared to parrotfish (reference species)</strong>.”</p>
+<p>When generating predictions of expected bite counts, we <strong>varied our depth variable</strong> and <strong>held all the other predictor variables constant</strong>. By doing so, we should be able to visualize the interaction between species and depth effect within our predicted expected values.</p>
+<p>For both parrotfish and striated surgeonfish, the predicted expected bite counts slope curves upward as depth increases. However, as depth increases, the upward curve of the slope is steeper for striated surgeon fish. Indicating that striated surgeon fish experience a stronger increase in expected bite rates with increasing depth, compared to parrotfish. This aligns with the statistically significant positive coefficient for the depth and species interaction effect in the additive-interactive model.</p>
+</section>
+</section>
+<section id="conclusions" class="level1">
+<h1>Conclusions:</h1>
+<p>From this analysis, we found that size has a significant effect on total bite counts, where larger fish take fewer bites. Another significant finding was that there was a significant effect of the interaction of species and depth. This indicates that there are different feeding behaviors of the species at different depths. After collecting these results, further research can be done to understand the behaviors of the species at different depths, which would include collecting other variables that could have an effect on bite counts. Such as different environmental factors, such as temperature, pH levels, presence of other species, etc. This analysis could provide a baseline for stakeholders when it comes to conservation decision-making. For example, by using this analysis and with further research, size limits can be created or updated to protect the size range of species that feed the most on the coral reefs.</p>
 <section id="references" class="level4">
 <h4 class="anchored" data-anchor-id="references">References:</h4>
 <p>Holbrook, S., Schmitt, R., Adam, T. et al.&nbsp;Coral Reef Resilience, Tipping Points and the Strength of Herbivory. Sci Rep 6, 35817 (2016). https://doi.org/10.1038/srep35817</p>
 <p>Moorea Coral Reef LTER and T. Adam. 2019. MCR LTER: Coral Reef Resilience: Herbivore Bite Rates on the North Shore Forereef July-August 2010 ver 2. Environmental Data Initiative. https://doi.org/10.6073/pasta/5a6798c5694d5a58362ab42e584b7b71 (Accessed 2025-12-04).</p>
-</section>
+<p>Parry, S. (2018, March). To Offset or Not: Using Offsets in Count Models. Https://Cscu.cornell.edu/; Cornell Statistical Consulting Unit. https://cscu.cornell.edu/wp-content/uploads/offsets.pdf</p>
 </section>
 </section>
 
